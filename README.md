@@ -1,6 +1,6 @@
 # React OAuth2 | Google
 
-Google OAuth2 using the new [**Google Identity Services SDK**](https://developers.google.com/identity/gsi/web) for React [@react-oauth/google](www.replace.com) 🚀
+Google OAuth2 using the new [**Google Identity Services SDK**](https://developers.google.com/identity/gsi/web) for React [@react-oauth/google](https://www.npmjs.com/package/@react-oauth/google)🚀
 
 ## Seamless sign-in and sign-up flows
 
