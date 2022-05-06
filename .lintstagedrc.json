@@ -1,0 +1,7 @@
+{
+  "*.{js,js,ts,tsx}": [
+    "prettier --write",
+    "cross-env CI=true npm run test --if-present  -- --findRelatedTests --bail"
+  ],
+  "*.{html,json,md,mdx,yml,yaml}": ["prettier --write"]
+}
