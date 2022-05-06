@@ -12,11 +12,14 @@
   "scripts": {
     "build": "rollup -c",
     "prerelease": "npm run build",
-    "release": "np --no-tests",
+    "release": "np --no-tests --no-yarn",
     "prettier:check": "prettier . --check --ignore-unknown",
     "prettier:fix": "prettier . --write --ignore-unknown",
     "commit": "cz",
     "prepare": "is-ci || husky install"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "author": {
     "name": "Mo'men Sherif",
