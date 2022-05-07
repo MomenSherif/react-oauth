@@ -16,12 +16,10 @@ export default defineConfig([
       {
         file: packageJson.main,
         format: 'cjs',
-        sourcemap: true,
       },
       {
         file: packageJson.module,
         format: 'esm',
-        sourcemap: true,
       },
     ],
     external: Object.keys(packageJson.dependencies || {}).concat(
