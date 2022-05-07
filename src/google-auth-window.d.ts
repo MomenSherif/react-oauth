@@ -29,12 +29,14 @@ interface Window {
         };
         hasGrantedAnyScope: (
           tokenRsponse: TokenResponse,
-          ...scopes: string[]
-        ) => void;
+          firstScope: string,
+          ...restScopes: string[]
+        ) => boolean;
         hasGrantedAllScopes: (
           tokenRsponse: TokenResponse,
-          ...scopes: string[]
-        ) => void;
+          firstScope: string,
+          ...restScopes: string[]
+        ) => boolean;
         revoke: (accessToken: string, done?: () => void) => void;
       };
     };

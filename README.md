@@ -158,6 +158,30 @@ const login = useGoogleLogin({
 </MyCustomButton>;
 ```
 
+#### Checks if the user granted all the specified scope or scopes
+
+```jsx
+import { hasGrantedAllScopesGoogle } from '@react-oauth/google';
+
+const hasAccess = hasGrantedAllScopesGoogle(
+  tokenResponse,
+  'google-scope-1',
+  'google-scope-2',
+);
+```
+
+#### Checks if the user granted any of the specified scope or scopes
+
+```jsx
+import { hasGrantedAnyScopeGoogle } from '@react-oauth/google';
+
+const hasAccess = hasGrantedAnyScopeGoogle(
+  tokenResponse,
+  'google-scope-1',
+  'google-scope-2',
+);
+```
+
 ## API
 
 ### GoogleOAuthProvider
