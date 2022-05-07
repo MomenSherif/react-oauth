@@ -2,6 +2,16 @@
 
 Google OAuth2 using the new [**Google Identity Services SDK**](https://developers.google.com/identity/gsi/web) for React [@react-oauth/google](https://www.npmjs.com/package/@react-oauth/google)🚀
 
+## Install
+
+```sh
+$ npm install @react-oauth/google
+
+# or
+
+$ yarn add @react-oauth/google
+```
+
 ## Seamless sign-in and sign-up flows
 
 ### Sign In With Google
@@ -50,8 +60,8 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 
 <GoogleLogin
-  onSuccess={tokenResponse => {
-    console.log(tokenResponse);
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
   }}
   onError={() => {
     console.log('Login Failed');
@@ -65,8 +75,8 @@ import { GoogleLogin } from '@react-oauth/google';
 import { useGoogleOneTapLogin } from '@react-oauth/google';
 
 useGoogleOneTapLogin({
-    onSuccess: tokenResponse => {
-        console.log(tokenResponse);
+    onSuccess: credentialResponse => {
+        console.log(credentialResponse);
     },
     onError={() => {
         console.log('Login Failed')
@@ -80,8 +90,8 @@ or
 import { GoogleLogin } from '@react-oauth/google';
 
 <GoogleLogin
-  onSuccess={tokenResponse => {
-    console.log(tokenResponse);
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
   }}
   onError={() => {
     console.log('Login Failed');
@@ -139,7 +149,7 @@ const login = useGoogleLogin({
 import { useGoogleLogin } from '@react-oauth/google';
 
 const login = useGoogleLogin({
-  onSuccess: tokenResponse => console.log(tokenResponse),
+  onSuccess: codeResponse => console.log(codeResponse),
   flow: 'auth-code',
 });
 
@@ -193,7 +203,7 @@ const login = useGoogleLogin({
 | Required | Prop                  | Type                                                                                      | Description                                                                                                                                                                                                                                                                                                                                     |
 | :------: | --------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |          | flow                  | `implicit` \| `auth-code`                                                                 | [Two flows](https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works), implicit and authorization code are discussed. Both return an access token suitable for use with Google APIs                                                                                                                                        |
-|          | onSuccess             | `(response: TokenResponse\|CodeResponse) => void`                                         | Callback fires with response (token\|code) based on flow selected after successfully login                                                                                                                                                                                                                                                      |
+|          | onSuccess             | `(response: TokenResponse\|CodeResponse) => void`                                         | Callback fires with response ([token](https://developers.google.com/identity/oauth2/web/reference/js-reference#TokenResponse) \| [code](https://developers.google.com/identity/oauth2/web/reference/js-reference#CodeResponse)) based on flow selected after successfully login                                                                 |
 |          | onError               | `(errorResponse: {error: string; error_description?: string,error_uri?: string}) => void` | Callback fires after login failure                                                                                                                                                                                                                                                                                                              |
 |          | scope                 | `string`                                                                                  | A space-delimited list of scopes that are approved by the user                                                                                                                                                                                                                                                                                  |
 |          | enable_serial_consent | `boolean`                                                                                 | defaults to true. If set to false, [more granular Google Account permissions](https://developers.googleblog.com/2018/10/more-granular-google-account.html) will be disabled for clients created before 2019. No effect for newer clients, since more granular permissions is always enabled for them.                                           |
