@@ -7,12 +7,16 @@ interface UseGoogleOneTapLoginOptions {
   onSuccess: (credentialResponse: CredentialResponse) => void;
   onError?: () => void;
   promptMomentNotification?: MomenListener;
+  cancel_on_tap_outside?: boolean;
+  hosted_domain?: string;
 }
 
 export default function useGoogleOneTapLogin({
   onSuccess,
   onError,
   promptMomentNotification,
+  cancel_on_tap_outside,
+  hosted_domain,
 }: UseGoogleOneTapLoginOptions): void {
   const { clientId, scriptLoadedSuccessfully } = useGoogleOAuth();
 
@@ -37,6 +41,8 @@ export default function useGoogleOneTapLogin({
 
         onSuccessRef.current(credentialResponse);
       },
+      hosted_domain,
+      cancel_on_tap_outside,
     });
 
     window.google?.accounts.id.prompt(promptMomentNotificationRef.current);
@@ -44,5 +50,10 @@ export default function useGoogleOneTapLogin({
     return () => {
       window.google?.accounts.id.cancel();
     };
-  }, [clientId, scriptLoadedSuccessfully]);
+  }, [
+    clientId,
+    scriptLoadedSuccessfully,
+    cancel_on_tap_outside,
+    hosted_domain,
+  ]);
 }

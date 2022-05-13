@@ -42,6 +42,13 @@ export interface IdConfiguration {
   intermediate_iframe_close_callback?: () => void;
   /** Enables upgraded One Tap UX on ITP browsers */
   itp_support?: boolean;
+  /**
+   * If your application knows the Workspace domain the user belongs to,
+   * use this to provide a hint to Google. For more information,
+   * see the [hd](https://developers.google.com/identity/protocols/oauth2/openid-connect#authenticationuriparameters)
+   * field in the OpenID Connect docs.
+   */
+  hosted_domain?: string;
 }
 
 export interface CredentialResponse {
