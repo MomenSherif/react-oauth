@@ -7,7 +7,7 @@ const { default: dts } = require('rollup-plugin-dts');
 const del = require('rollup-plugin-delete');
 const cleaner = require('rollup-plugin-cleaner');
 
-const __PROD__ = process.env.NODE_ENV === 'production';
+const __PROD__ = process.env.NODE_ENV !== 'development';
 
 module.exports = packageJson =>
   [
