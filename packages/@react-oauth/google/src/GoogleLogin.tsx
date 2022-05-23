@@ -93,9 +93,6 @@ export default function GoogleLogin({
   ]);
 
   return (
-    <div
-      ref={btnContainerRef}
-      style={{ display: 'inline-flex', height: containerHeightMap[size] }}
-    />
+    <div ref={btnContainerRef} style={{ height: containerHeightMap[size] }} />
   );
 }
