@@ -7,7 +7,7 @@
     },
     "build": {
       "dependsOn": [],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**", "build/**"]
     },
     "prettier:fix": {
       "dependsOn": [],
