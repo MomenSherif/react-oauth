@@ -1,48 +1,52 @@
-# Getting Started with Create React App
+# React OAuth2 | Google
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Google OAuth2 using the new [**Google Identity Services SDK**](https://developers.google.com/identity/gsi/web) for React [@react-oauth/google](https://www.npmjs.com/package/@react-oauth/google)🚀
 
-## Available Scripts
+## Install
 
-In the project directory, you can run:
+```sh
+$ npm install @react-oauth/google@latest
 
-### `npm start`
+# or
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+$ yarn add @react-oauth/google@latest
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Playground
 
-### `npm test`
+[Demo](http://react-oauth.vercel.app/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Seamless sign-in and sign-up flows
 
-### `npm run build`
+### Sign In With Google
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Add a personalized and customizable sign-up or sign-in button to your website.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![personalized button](https://developers.google.com/identity/gsi/web/images/personalized-button-single_480.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### One-tap sign-up
 
-### `npm run eject`
+Sign up new users with just one tap, without interrupting them with a sign-up screen. Users get a secure, token-based, passwordless account on your site, protected by their Google Account.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![One-tap sign-up](https://developers.google.com/identity/gsi/web/images/one-tap-sign-in_480.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Automatic sign-in
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Sign users in automatically when they return to your site on any device or browser, even after their session expires.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![Automatic sign-in](https://developers.google.com/identity/gsi/web/images/auto-sign-in_480.png)
 
-## Learn More
+## User authorization for Google APIs (with custom button)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+OAuth 2.0 implicit and authorization code flows for web apps
 
+<<<<<<< HEAD
+=======
+> The Google Identity Services JavaScript library helps you to quickly and safely obtain access tokens necessary to call Google APIs. Your web application, complete either the OAuth 2.0 implicit flow, or to initiate the authorization code flow which then finishes on your backend platform.
+
+## How to use
+
+>>>>>>> 066f2d8 (docs: update correct README.md)
 1. Get your [**Google API client ID**](https://console.cloud.google.com/apis/dashboard)
 
 > Key Point: Add both `http://localhost` and `http://localhost:<port_number>` to the Authorized JavaScript origins box for local tests or development.
@@ -128,7 +132,11 @@ useGoogleOneTapLogin({
 });
 ```
 
+<<<<<<< HEAD
 ### Custom login button (implicit & authorization code flow)
+=======
+### Custom login button (implicit & authorizaion code flow)
+>>>>>>> 066f2d8 (docs: update correct README.md)
 
 #### Implicit flow
 
@@ -263,5 +271,8 @@ const hasAccess = hasGrantedAnyScopeGoogle(
 |          | promptMomentNotification | `(notification: PromptMomentNotification) => void` | [PromptMomentNotification](https://developers.google.com/identity/gsi/web/reference/js-reference) methods and description                                                                                                                                                         |
 |          | cancel_on_tap_outside    | `boolean`                                          | Controls whether to cancel the prompt if the user clicks outside of the prompt                                                                                                                                                                                                    |
 |          | hosted_domain            | `string`                                           | If your application knows the Workspace domain the user belongs to, use this to provide a hint to Google. For more information, see the [hd](https://developers.google.com/identity/protocols/oauth2/openid-connect#authenticationuriparameters) field in the OpenID Connect docs |
+<<<<<<< HEAD
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+=======
+>>>>>>> 066f2d8 (docs: update correct README.md)
