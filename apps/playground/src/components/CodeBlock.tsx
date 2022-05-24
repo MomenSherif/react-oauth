@@ -11,7 +11,7 @@ export default function CodeBlock({ imgSrc, code = '' }: CodeBlockProps) {
   const [isCopied, setCopied] = useClipboard(code, { successDuration: 3000 });
 
   return (
-    <Box maxW="sm" position="relative">
+    <Box maxW="lg" position="relative">
       <Img src={imgSrc} alt="" />
       {code && (
         <IconButton

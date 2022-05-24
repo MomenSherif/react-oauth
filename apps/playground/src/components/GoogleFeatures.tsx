@@ -8,12 +8,9 @@ import {
   StackDivider,
 } from '@chakra-ui/react';
 import { SmallAddIcon, SmallCloseIcon } from '@chakra-ui/icons';
-import { Flows } from '../types/enums';
 
-type Feature = {
-  label: string;
-  available: boolean;
-};
+import { Feature } from '../types';
+import { Flows } from '../types/enums';
 
 const signInFlowsFeatures: Feature[] = [
   {
@@ -91,12 +88,16 @@ export default function GoogleFeatures({ setFlow }: GoogleFeaturesProps) {
             </ListItem>
           ))}
         </List>
-        <Button colorScheme="blue" onClick={() => setFlow(Flows.SignIn)}>
+        <Button
+          colorScheme="blue"
+          mt="auto"
+          onClick={() => setFlow(Flows.SignIn)}
+        >
           Sign-in flows
         </Button>
       </Flex>
       <Flex direction="column" align="center">
-        <List>
+        <List mb="5">
           {authorizationFlowsFeatures.map(feat => (
             <ListItem key={feat.label} textTransform="capitalize">
               <ListIcon

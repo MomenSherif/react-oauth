@@ -31,6 +31,8 @@ export default function SignInFlows() {
         href="https://github.com/MomenSherif/react-oauth#googlelogin"
         color="blue.600"
         fontWeight="semibold"
+        target="_blank"
+        rel="noopener noreferrer"
       >
         GoogleLogin Props
       </Link>

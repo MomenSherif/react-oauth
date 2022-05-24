@@ -6,6 +6,7 @@ import GoogleFeatures from './components/GoogleFeatures';
 import SignInFlows from './components/SignInFlows';
 
 import { Flows } from './types/enums';
+import AuthorizationFeatures from './components/AuthorizationFeatures';
 
 function App() {
   const [flow, setFlow] = useState<Flows | null>(null);
@@ -35,6 +36,7 @@ function App() {
         </Button>
       )}
       {flow === Flows.SignIn && <SignInFlows />}
+      {flow === Flows.Authorization && <AuthorizationFeatures />}
     </Flex>
   );
 }
