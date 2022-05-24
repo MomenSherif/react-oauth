@@ -13,6 +13,7 @@
     "build": "cross-env NODE_ENV=production turbo run build",
     "prettier:check": "prettier . --check --ignore-unknown --ignore-path .gitignore",
     "prettier:fix": "prettier . --write --ignore-unknown --ignore-path .gitignore",
+    "release:google": "cross-env NODE_ENV=production npm --prefix ./packages/@react-oauth/google run release",
     "commit": "cz",
     "prepare": "is-ci || husky install"
   },
