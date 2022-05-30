@@ -125,7 +125,7 @@ useGoogleOneTapLogin({
 });
 ```
 
-### Custom login button (implicit & authorizaion code flow)
+### Custom login button (implicit & authorization code flow)
 
 #### Implicit flow
 
