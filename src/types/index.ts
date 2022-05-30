@@ -127,7 +127,7 @@ export interface TokenResponse {
   access_token: string;
 
   /** The lifetime in seconds of the access token. */
-  expires_in: string;
+  expires_in: number;
 
   /** The hosted domain the signed-in user belongs to. */
   hd?: string;
