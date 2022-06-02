@@ -12,10 +12,6 @@ $ npm install @react-oauth/google@latest
 $ yarn add @react-oauth/google@latest
 ```
 
-## Playground
-
-[Demo](http://react-oauth.vercel.app/)
-
 ## Seamless sign-in and sign-up flows
 
 ### Sign In With Google
@@ -133,10 +129,14 @@ useGoogleOneTapLogin({
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ### Custom login button (implicit & authorization code flow)
 =======
 ### Custom login button (implicit & authorizaion code flow)
 >>>>>>> 066f2d8 (docs: update correct README.md)
+=======
+### Custom login button (implicit & authorization code flow)
+>>>>>>> fa75933 (fix: readme & types typo)
 
 #### Implicit flow
 
