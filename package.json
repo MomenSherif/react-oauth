@@ -1,79 +1,37 @@
 {
-  "name": "@react-oauth/google",
-  "version": "0.2.5",
-  "description": "Google OAuth2 using Google Identity Services for React 🚀",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
+  "name": "@react-oauth/monorepo",
+  "private": true,
+  "description": "Monorepo for OAuth2 providers in React 🚀",
+  "workspaces": [
+    "packages/*",
+    "packages/@react-oauth/*",
+    "apps/*"
   ],
-  "license": "MIT",
   "scripts": {
-    "build": "rollup -c",
-    "prerelease": "npm run build",
-    "release": "np --no-tests --no-yarn",
-    "prettier:check": "prettier . --check --ignore-unknown",
-    "prettier:fix": "prettier . --write --ignore-unknown",
+    "dev": "cross-env NODE_ENV=development turbo run dev",
+    "dev:google": "npm run dev -- --filter=...@react-oauth/google",
+    "build": "cross-env NODE_ENV=production turbo run build",
+    "prettier:check": "prettier . --check --ignore-unknown --ignore-path .gitignore",
+    "prettier:fix": "prettier . --write --ignore-unknown --ignore-path .gitignore",
+    "prerelease": "npm run build -- --filter=./packages/@react-oauth/*",
+    "changeset": "changeset",
+    "release": "changeset publish",
     "commit": "cz",
     "prepare": "is-ci || husky install"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "author": {
-    "name": "Mo'men Sherif",
-    "email": "momensherif.2019@gmail.com",
-    "url": "https://github.com/MomenSherif"
-  },
-  "homepage": "https://github.com/MomenSherif/react-oauth",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MomenSherif/react-oauth"
-  },
-  "bugs": {
-    "url": "https://github.com/MomenSherif/react-oauth/issues",
-    "email": "momensherif.2019@gmail.com"
-  },
-  "keywords": [
-    "react",
-    "reactjs",
-    "react-component",
-    "react-oauth-google",
-    "react-google-login",
-    "react-social-login",
-    "react-oauth",
-    "react-login",
-    "google-login",
-    "google-oAuth2",
-    "google-oAuth"
-  ],
   "devDependencies": {
-    "@commitlint/cli": "^16.1.0",
-    "@commitlint/config-conventional": "^16.0.0",
-    "@rollup/plugin-commonjs": "^22.0.0",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@types/react": "^18.0.8",
+    "@changesets/changelog-github": "^0.4.4",
+    "@changesets/cli": "^2.22.0",
+    "@commitlint/cli": "^16.3.0",
+    "@commitlint/config-conventional": "^16.2.4",
     "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "husky": "^7.0.4",
+    "husky": "^8.0.1",
     "is-ci": "^3.0.1",
-    "lint-staged": "^12.3.1",
-    "np": "^7.6.1",
-    "prettier": "2.5.1",
-    "rollup": "^2.71.1",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-cleaner": "^1.0.0",
-    "rollup-plugin-delete": "^2.0.0",
-    "rollup-plugin-dts": "^4.2.1",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-typescript2": "^0.31.2",
-    "typescript": "^4.6.4"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "lint-staged": "^12.4.1",
+    "prettier": "^2.6.2",
+    "turbo": "^1.2.9"
   },
   "config": {
     "commitizen": {
