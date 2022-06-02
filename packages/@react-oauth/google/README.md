@@ -12,6 +12,10 @@ $ npm install @react-oauth/google@latest
 $ yarn add @react-oauth/google@latest
 ```
 
+## Demo
+
+https://react-oauth.vercel.app/
+
 ## Seamless sign-in and sign-up flows
 
 ### Sign In With Google
