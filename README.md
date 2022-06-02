@@ -36,13 +36,10 @@ Sign users in automatically when they return to your site on any device or brows
 
 OAuth 2.0 implicit and authorization code flows for web apps
 
-<<<<<<< HEAD
-=======
 > The Google Identity Services JavaScript library helps you to quickly and safely obtain access tokens necessary to call Google APIs. Your web application, complete either the OAuth 2.0 implicit flow, or to initiate the authorization code flow which then finishes on your backend platform.
 
 ## How to use
 
->>>>>>> 066f2d8 (docs: update correct README.md)
 1. Get your [**Google API client ID**](https://console.cloud.google.com/apis/dashboard)
 
 > Key Point: Add both `http://localhost` and `http://localhost:<port_number>` to the Authorized JavaScript origins box for local tests or development.
@@ -128,15 +125,7 @@ useGoogleOneTapLogin({
 });
 ```
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ### Custom login button (implicit & authorization code flow)
-=======
-### Custom login button (implicit & authorizaion code flow)
->>>>>>> 066f2d8 (docs: update correct README.md)
-=======
-### Custom login button (implicit & authorization code flow)
->>>>>>> fa75933 (fix: readme & types typo)
 
 #### Implicit flow
 
@@ -271,8 +260,3 @@ const hasAccess = hasGrantedAnyScopeGoogle(
 |          | promptMomentNotification | `(notification: PromptMomentNotification) => void` | [PromptMomentNotification](https://developers.google.com/identity/gsi/web/reference/js-reference) methods and description                                                                                                                                                         |
 |          | cancel_on_tap_outside    | `boolean`                                          | Controls whether to cancel the prompt if the user clicks outside of the prompt                                                                                                                                                                                                    |
 |          | hosted_domain            | `string`                                           | If your application knows the Workspace domain the user belongs to, use this to provide a hint to Google. For more information, see the [hd](https://developers.google.com/identity/protocols/oauth2/openid-connect#authenticationuriparameters) field in the OpenID Connect docs |
-<<<<<<< HEAD
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-=======
->>>>>>> 066f2d8 (docs: update correct README.md)
