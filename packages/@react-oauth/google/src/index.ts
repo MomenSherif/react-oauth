@@ -6,4 +6,5 @@ export { default as useGoogleLogin } from './hooks/useGoogleLogin';
 export { default as useGoogleOneTapLogin } from './hooks/useGoogleOneTapLogin';
 export { default as hasGrantedAllScopesGoogle } from './hasGrantedAllScopesGoogle';
 export { default as hasGrantedAnyScopeGoogle } from './hasGrantedAnyScopeGoogle';
+export type { GoogleLoginProps } from './GoogleLogin';
 export * from './types';
