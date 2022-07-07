@@ -82,9 +82,9 @@ useGoogleOneTapLogin({
     onSuccess: credentialResponse => {
         console.log(credentialResponse);
     },
-    onError={() => {
+    onError: () => {
         console.log('Login Failed')
-    }}
+    }
 });
 ```
 
