@@ -128,7 +128,21 @@ useGoogleOneTapLogin({
     auto_select
 });
 ```
+4. Now, the next step is to access current logged in **user data** from token. You can use ```jwt-decode``` package for decoding the token.
+```jsx
+import { GoogleLogin } from '@react-oauth/google';
+import jwtDecode from "jwt-decode";
 
+const Login = () => {
+  return (
+      <GoogleLogin onSuccess={(credentialResponse) => {
+          const {credential} = credentialResponse;
+          const user = jwtDecode(credential);
+          console.log(user);
+      }}/>
+  );
+}
+```
 ### Custom login button (implicit & authorization code flow)
 
 #### Implicit flow
