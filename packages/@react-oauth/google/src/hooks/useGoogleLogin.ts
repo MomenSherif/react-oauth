@@ -44,15 +44,15 @@ interface AuthCodeFlowOptions
   scope?: CodeResponse['scope'];
 }
 
-type UseGoogleLoginOptionsImplicitFlow = {
+export type UseGoogleLoginOptionsImplicitFlow = {
   flow?: 'implicit';
 } & ImplicitFlowOptions;
 
-type UseGoogleLoginOptionsAuthCodeFlow = {
+export type UseGoogleLoginOptionsAuthCodeFlow = {
   flow?: 'auth-code';
 } & AuthCodeFlowOptions;
 
-type UseGoogleLoginOptions =
+export type UseGoogleLoginOptions =
   | UseGoogleLoginOptionsImplicitFlow
   | UseGoogleLoginOptionsAuthCodeFlow;
 
