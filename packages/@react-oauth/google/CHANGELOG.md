@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.3.0
+
+### Minor Changes
+
+- [#87](https://github.com/MomenSherif/react-oauth/pull/87) [`787ed02`](https://github.com/MomenSherif/react-oauth/commit/787ed022133546619765ad25261598347fe98948) Thanks [@MomenSherif](https://github.com/MomenSherif)! - Export useGoogleLogin options types
+
 ## 0.2.6
 
 ### Patch Changes
