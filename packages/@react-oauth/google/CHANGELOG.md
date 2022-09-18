@@ -1,6 +1,10 @@
 # @react-oauth/google
 
-## 0.3.0
+## 0.2.7
+
+### Minor Changes
+
+- Export useGoogleLogin option types
 
 ### Minor Changes
 
