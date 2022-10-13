@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, type MouseEventHandler } from 'react';
 
 import { useGoogleOAuth } from './GoogleOAuthProvider';
 import {
@@ -15,6 +15,7 @@ export type GoogleLoginProps = {
   onError?: () => void;
   promptMomentNotification?: MomenListener;
   useOneTap?: boolean;
+  onClick?: MouseEventHandler;
 } & Omit<IdConfiguration, 'client_id' | 'callback'> &
   GsiButtonConfiguration;
 
@@ -22,6 +23,7 @@ export default function GoogleLogin({
   onSuccess,
   onError,
   useOneTap,
+  onClick,
   promptMomentNotification,
   type = 'standard',
   theme = 'outline',
@@ -73,6 +75,8 @@ export default function GoogleLogin({
 
     if (useOneTap)
       window.google?.accounts.id.prompt(promptMomentNotificationRef.current);
+
+    onClick && btnContainerRef.current.addEventListener("click", onClick);
 
     return () => {
       if (useOneTap) window.google?.accounts.id.cancel();
