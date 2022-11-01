@@ -6,12 +6,13 @@ import {
   MomenListener,
   GsiButtonConfiguration,
   GoogleCredentialResponse,
+  CredentialResponse,
 } from './types';
 
 const containerHeightMap = { large: 40, medium: 32, small: 20 };
 
 export type GoogleLoginProps = {
-  onSuccess: (credentialResponse: GoogleCredentialResponse) => void;
+  onSuccess: (credentialResponse: CredentialResponse) => void;
   onError?: () => void;
   promptMomentNotification?: MomenListener;
   useOneTap?: boolean;
@@ -53,7 +54,7 @@ export default function GoogleLogin({
       callback: (credentialResponse: GoogleCredentialResponse) => {
         const { credential, select_by, client_id } = credentialResponse;
         const clientId = credentialResponse?.clientId ?? client_id;
-        if (!clientId || !credentialResponse.credential) {
+        if (!credential) {
           return onErrorRef.current?.();
         }
 

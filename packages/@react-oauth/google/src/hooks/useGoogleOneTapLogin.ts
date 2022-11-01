@@ -1,10 +1,14 @@
 import { useEffect, useRef } from 'react';
 
 import { useGoogleOAuth } from '../GoogleOAuthProvider';
-import { GoogleCredentialResponse, MomenListener } from '../types';
+import {
+  CredentialResponse,
+  GoogleCredentialResponse,
+  MomenListener,
+} from '../types';
 
 interface UseGoogleOneTapLoginOptions {
-  onSuccess: (credentialResponse: GoogleCredentialResponse) => void;
+  onSuccess: (credentialResponse: CredentialResponse) => void;
   onError?: () => void;
   promptMomentNotification?: MomenListener;
   cancel_on_tap_outside?: boolean;
@@ -37,7 +41,7 @@ export default function useGoogleOneTapLogin({
       callback: (credentialResponse: GoogleCredentialResponse) => {
         const { credential, select_by, client_id } = credentialResponse;
         const clientId = credentialResponse?.clientId ?? client_id;
-        if (!clientId || !credentialResponse.credential) {
+        if (!credential) {
           return onErrorRef.current?.();
         }
 
