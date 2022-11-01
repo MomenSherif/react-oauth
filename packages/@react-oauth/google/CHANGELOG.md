@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.3.0
+
+### Minor Changes
+
+- [#121](https://github.com/MomenSherif/react-oauth/pull/121) [`54e1856`](https://github.com/MomenSherif/react-oauth/commit/54e185654cb7bd1dde17249f800df8e8a97fd5ac) Thanks [@yuriburk](https://github.com/yuriburk)! - Makes the client_id change on CredentialResponse in Brazil compatible for the current clientId and removes the verification to trigger onSuccess.
+
 ## 0.2.8
 
 ### Patch Changes
