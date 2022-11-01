@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 
 import { useGoogleOAuth } from './GoogleOAuthProvider';
+import { extractClientId } from './utils';
 import {
   IdConfiguration,
+  CredentialResponse,
+  GoogleCredentialResponse,
   MomenListener,
   GsiButtonConfiguration,
-  GoogleCredentialResponse,
-  CredentialResponse,
 } from './types';
 
 const containerHeightMap = { large: 40, medium: 32, small: 20 };
@@ -52,12 +53,15 @@ export default function GoogleLogin({
     window.google?.accounts.id.initialize({
       client_id: clientId,
       callback: (credentialResponse: GoogleCredentialResponse) => {
-        const { credential, select_by, client_id } = credentialResponse;
-        const clientId = credentialResponse?.clientId ?? client_id;
-        if (!credential) {
+        if (!credentialResponse.credential) {
           return onErrorRef.current?.();
         }
 
+        const { credential, select_by, client_id } = credentialResponse;
+        const clientId =
+          credentialResponse?.clientId ??
+          client_id ??
+          extractClientId(credentialResponse.credential);
         onSuccessRef.current({ credential, clientId, select_by });
       },
       ...props,

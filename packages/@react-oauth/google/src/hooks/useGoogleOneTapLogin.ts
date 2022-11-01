@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 import { useGoogleOAuth } from '../GoogleOAuthProvider';
+import { extractClientId } from '../utils';
 import {
   CredentialResponse,
   GoogleCredentialResponse,
@@ -39,12 +40,15 @@ export default function useGoogleOneTapLogin({
     window.google?.accounts.id.initialize({
       client_id: clientId,
       callback: (credentialResponse: GoogleCredentialResponse) => {
-        const { credential, select_by, client_id } = credentialResponse;
-        const clientId = credentialResponse?.clientId ?? client_id;
-        if (!credential) {
+        if (!credentialResponse.credential) {
           return onErrorRef.current?.();
         }
 
+        const { credential, select_by, client_id } = credentialResponse;
+        const clientId =
+          credentialResponse?.clientId ??
+          client_id ??
+          extractClientId(credentialResponse.credential);
         onSuccessRef.current({ credential, clientId, select_by });
       },
       hosted_domain,
