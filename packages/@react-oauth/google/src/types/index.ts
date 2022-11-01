@@ -64,6 +64,10 @@ export interface CredentialResponse {
     | 'btn_confirm'
     | 'brn_add_session'
     | 'btn_confirm_add_session';
+  clientId?: string;
+}
+
+export interface GoogleCredentialResponse extends CredentialResponse {
   client_id?: string;
 }
 

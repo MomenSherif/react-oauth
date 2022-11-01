@@ -3,15 +3,15 @@ import React, { useEffect, useRef } from 'react';
 import { useGoogleOAuth } from './GoogleOAuthProvider';
 import {
   IdConfiguration,
-  CredentialResponse,
   MomenListener,
   GsiButtonConfiguration,
+  GoogleCredentialResponse,
 } from './types';
 
 const containerHeightMap = { large: 40, medium: 32, small: 20 };
 
 export type GoogleLoginProps = {
-  onSuccess: (credentialResponse: CredentialResponse) => void;
+  onSuccess: (credentialResponse: GoogleCredentialResponse) => void;
   onError?: () => void;
   promptMomentNotification?: MomenListener;
   useOneTap?: boolean;
@@ -50,12 +50,14 @@ export default function GoogleLogin({
 
     window.google?.accounts.id.initialize({
       client_id: clientId,
-      callback: (credentialResponse: CredentialResponse) => {
-        if (!credentialResponse.client_id || !credentialResponse.credential) {
+      callback: (credentialResponse: GoogleCredentialResponse) => {
+        const { credential, select_by, client_id } = credentialResponse;
+        const clientId = credentialResponse?.clientId ?? client_id;
+        if (!clientId || !credentialResponse.credential) {
           return onErrorRef.current?.();
         }
 
-        onSuccessRef.current(credentialResponse);
+        onSuccessRef.current({ credential, clientId, select_by });
       },
       ...props,
     });
