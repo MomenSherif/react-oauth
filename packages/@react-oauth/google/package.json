@@ -1,5 +1,5 @@
 {
-  "name": "@react-oauth/google",
+  "name": "@wink-financial/google",
   "version": "0.2.8",
   "description": "Google OAuth2 using Google Identity Services for React 🚀",
   "main": "./dist/index.js",
