@@ -44,12 +44,12 @@ export default function useGoogleOneTapLogin({
           return onErrorRef.current?.();
         }
 
-        const { credential, select_by, client_id } = credentialResponse;
-        const clientId =
-          credentialResponse?.clientId ??
-          client_id ??
-          extractClientId(credentialResponse.credential);
-        onSuccessRef.current({ credential, clientId, select_by });
+        const { credential, select_by } = credentialResponse;
+        onSuccessRef.current({
+          credential,
+          clientId: extractClientId(credentialResponse),
+          select_by,
+        });
       },
       hosted_domain,
       cancel_on_tap_outside,
