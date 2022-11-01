@@ -40,7 +40,7 @@ export default function useGoogleOneTapLogin({
     window.google?.accounts.id.initialize({
       client_id: clientId,
       callback: (credentialResponse: GoogleCredentialResponse) => {
-        if (!credentialResponse.credential) {
+        if (!credentialResponse?.credential) {
           return onErrorRef.current?.();
         }
 
