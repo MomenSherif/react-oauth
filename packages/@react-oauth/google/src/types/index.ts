@@ -64,6 +64,7 @@ export interface CredentialResponse {
     | 'btn_confirm'
     | 'brn_add_session'
     | 'btn_confirm_add_session';
+  clientId?: string;
   client_id?: string;
 }
 
