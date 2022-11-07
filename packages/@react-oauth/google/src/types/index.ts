@@ -219,7 +219,7 @@ export interface OverridableTokenClientConfig {
   /**
    * Optional. A space-delimited, case-sensitive list of prompts to present the user.
    */
-  prompt?: string;
+  prompt?: '' | 'none' | 'consent' | 'select_account';
 
   /**
    * Optional. If set to false,
