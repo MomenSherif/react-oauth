@@ -144,6 +144,10 @@ const login = useGoogleLogin({
   Sign in with Google 🚀{' '}
 </MyCustomButton>;
 ```
+To access the user data fetch
+```
+https://www.googleapis.com/oauth2/v3/userinfo?access_token=<the access token from the useGoogleLogin() tokenResponse>
+```
 
 #### Authorization code flow
 
