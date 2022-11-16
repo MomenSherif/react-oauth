@@ -25,6 +25,7 @@ interface ImplicitFlowOptions
     >,
   ) => void;
   scope?: TokenClientConfig['scope'];
+  overrideScope?: boolean;
 }
 
 interface AuthCodeFlowOptions
@@ -42,6 +43,7 @@ interface AuthCodeFlowOptions
     >,
   ) => void;
   scope?: CodeResponse['scope'];
+  overrideScope?: boolean;
 }
 
 export type UseGoogleLoginOptionsImplicitFlow = {
@@ -68,6 +70,7 @@ export default function useGoogleLogin({
   scope = '',
   onSuccess,
   onError,
+  overrideScope,
   ...props
 }: UseGoogleLoginOptions): unknown {
   const { clientId, scriptLoadedSuccessfully } = useGoogleOAuth();
@@ -87,7 +90,7 @@ export default function useGoogleLogin({
 
     const client = window.google?.accounts.oauth2[clientMethod]({
       client_id: clientId,
-      scope: `openid profile email ${scope}`,
+      scope: overrideScope ? scope : `openid profile email ${scope}`,
       callback: (response: TokenResponse | CodeResponse) => {
         if (response.error) return onErrorRef.current?.(response);
 
