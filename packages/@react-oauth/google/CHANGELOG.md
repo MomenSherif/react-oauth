@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.5.0
+
+### Minor Changes
+
+- [`e956408`](https://github.com/MomenSherif/react-oauth/commit/e9564081c6241a7b2e85157cfc35e8db43b2560d) Thanks [@MomenSherif](https://github.com/MomenSherif)! - Ability to override default scope
+
 ## 0.4.0
 
 ### Minor Changes
