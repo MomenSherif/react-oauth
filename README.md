@@ -1,6 +1,6 @@
 # React OAuth2 | Google
 
-Google OAuth2 using the new [**Google Identity Services SDK**](https://developers.google.com/identity/gsi/web) for React [@react-oauth/google](https://www.npmjs.com/package/@react-oauth/google)🚀
+Google OAuth2 using the new [**Google Identity Services SDK**](https://developers.google.com/identity/gsi/web) for React [@react-oauth/google](https://www.npmjs.com/package/@react-oauth/google) 🚀
 
 ## Install
 
@@ -24,11 +24,11 @@ Add a personalized and customizable sign-up or sign-in button to your website.
 
 ![personalized button](https://developers.google.com/identity/gsi/web/images/personalized-button-single_480.png)
 
-### One-tap sign-up
+### One Tap sign-up
 
 Sign up new users with just one tap, without interrupting them with a sign-up screen. Users get a secure, token-based, passwordless account on your site, protected by their Google Account.
 
-![One-tap sign-up](https://developers.google.com/identity/gsi/web/images/one-tap-sign-in_480.png)
+![One Tap sign-up](https://developers.google.com/identity/gsi/web/images/one-tap-sign-in_480.png)
 
 ### Automatic sign-in
 
@@ -38,19 +38,19 @@ Sign users in automatically when they return to your site on any device or brows
 
 ## User authorization for Google APIs (with custom button)
 
-OAuth 2.0 implicit and authorization code flows for web apps
+OAuth 2.0 implicit and authorization code flows for web apps.
 
 > The Google Identity Services JavaScript library helps you to quickly and safely obtain access tokens necessary to call Google APIs. Your web application, complete either the OAuth 2.0 implicit flow, or to initiate the authorization code flow which then finishes on your backend platform.
 
 ## How to use
 
-1. Get your [**Google API client ID**](https://console.cloud.google.com/apis/dashboard)
+1. Get your [**Google API client ID**](https://console.cloud.google.com/apis/dashboard).
 
 > Key Point: Add both `http://localhost` and `http://localhost:<port_number>` to the Authorized JavaScript origins box for local tests or development.
 
-2. Configure your OAuth [**Consent Screen**](https://console.cloud.google.com/apis/credentials/consent)
+2. Configure your OAuth [**Consent Screen**](https://console.cloud.google.com/apis/credentials/consent).
 
-3. Wrap your application with `GoogleOAuthProvider`
+3. Wrap your application with `GoogleOAuthProvider`.
 
 ```jsx
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -73,7 +73,7 @@ import { GoogleLogin } from '@react-oauth/google';
 />;
 ```
 
-### One-tap
+### One Tap
 
 ```jsx
 import { useGoogleOneTapLogin } from '@react-oauth/google';
@@ -208,7 +208,7 @@ const hasAccess = hasGrantedAnyScopeGoogle(
 |          | text                               | `signin_with` \| `signup_with` \| `continue_with` \| `signin` | Button [text](https://developers.google.com/identity/gsi/web/reference/js-reference#text). For example, "Sign in with Google", "Sign up with Google" or "Sign in"                                                                                                                 |
 |          | shape                              | `rectangular` \| `pill` \| `circle` \| `square`               | Button [shape](https://developers.google.com/identity/gsi/web/reference/js-reference#shape)                                                                                                                                                                                       |
 |          | logo_alignment                     | `left` \| `center`                                            | Google [logo alignment](https://developers.google.com/identity/gsi/web/reference/js-reference#logo_alignment)                                                                                                                                                                     |
-|          | width                              | `string`                                                      | button [width](https://developers.google.com/identity/gsi/web/reference/js-reference#width), in pixels                                                                                                                                                                            |
+|          | width                              | `string`                                                      | Button [width](https://developers.google.com/identity/gsi/web/reference/js-reference#width), in pixels                                                                                                                                                                            |
 |          | locale                             | `string`                                                      | If set, then the button [language](https://developers.google.com/identity/gsi/web/reference/js-reference#locale) is rendered                                                                                                                                                      |
 |          | useOneTap                          | `boolean`                                                     | Activate One-tap sign-up or not                                                                                                                                                                                                                                                   |
 |          | promptMomentNotification           | `(notification: PromptMomentNotification) => void`            | [PromptMomentNotification](https://developers.google.com/identity/gsi/web/reference/js-reference) methods and description                                                                                                                                                         |
@@ -235,7 +235,7 @@ const hasAccess = hasGrantedAnyScopeGoogle(
 |          | onSuccess             | `(response: TokenResponse\|CodeResponse) => void`                                         | Callback fires with response ([token](https://developers.google.com/identity/oauth2/web/reference/js-reference#TokenResponse) \| [code](https://developers.google.com/identity/oauth2/web/reference/js-reference#CodeResponse)) based on flow selected after successfully login                                                                 |
 |          | onError               | `(errorResponse: {error: string; error_description?: string,error_uri?: string}) => void` | Callback fires after login failure                                                                                                                                                                                                                                                                                                              |
 |          | scope                 | `string`                                                                                  | A space-delimited list of scopes that are approved by the user                                                                                                                                                                                                                                                                                  |
-|          | enable_serial_consent | `boolean`                                                                                 | defaults to true. If set to false, [more granular Google Account permissions](https://developers.googleblog.com/2018/10/more-granular-google-account.html) will be disabled for clients created before 2019. No effect for newer clients, since more granular permissions is always enabled for them.                                           |
+|          | enable_serial_consent | `boolean`                                                                                 | defaults to true. If set to false, [more granular Google Account permissions](https://developers.googleblog.com/2018/10/more-granular-google-account.html) will be disabled for clients created before 2019. No effect for newer clients, since more granular permissions is always enabled for them                                           |
 |          | hint                  | `string`                                                                                  | If your application knows which user should authorize the request, it can use this property to provide a hint to Google. The email address for the target user. For more information, see the [login_hint](https://developers.google.com/identity/protocols/oauth2/openid-connect#authenticationuriparameters) field in the OpenID Connect docs |
 |          | hosted_domain         | `string`                                                                                  | If your application knows the Workspace domain the user belongs to, use this to provide a hint to Google. For more information, see the [hd](https://developers.google.com/identity/protocols/oauth2/openid-connect#authenticationuriparameters) field in the OpenID Connect docs                                                               |
 
