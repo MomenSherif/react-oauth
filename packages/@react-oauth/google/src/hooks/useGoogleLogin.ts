@@ -10,6 +10,16 @@ import {
   OverridableTokenClientConfig,
 } from '../types';
 
+export type NonOAuthError = {
+  /**
+   * Some non-OAuth errors, such as the popup window is failed to open;
+   * or closed before an OAuth response is returned.
+   * https://developers.google.com/identity/oauth2/web/reference/js-reference#TokenClientConfig
+   * https://developers.google.com/identity/oauth2/web/reference/js-reference#CodeClientConfig
+   */
+  type: 'popup_failed_to_open' | 'popup_closed' | 'unknown';
+}
+
 interface ImplicitFlowOptions
   extends Omit<TokenClientConfig, 'client_id' | 'scope' | 'callback'> {
   onSuccess?: (
@@ -24,6 +34,7 @@ interface ImplicitFlowOptions
       'error' | 'error_description' | 'error_uri'
     >,
   ) => void;
+  onNonOAuthError?: (nonOAuthError: NonOAuthError) => void;
   scope?: TokenClientConfig['scope'];
   overrideScope?: boolean;
 }
@@ -42,6 +53,7 @@ interface AuthCodeFlowOptions
       'error' | 'error_description' | 'error_uri'
     >,
   ) => void;
+  onNonOAuthError?: (nonOAuthError: NonOAuthError) => void;
   scope?: CodeResponse['scope'];
   overrideScope?: boolean;
 }
@@ -70,6 +82,7 @@ export default function useGoogleLogin({
   scope = '',
   onSuccess,
   onError,
+  onNonOAuthError,
   overrideScope,
   ...props
 }: UseGoogleLoginOptions): unknown {
@@ -81,6 +94,9 @@ export default function useGoogleLogin({
 
   const onErrorRef = useRef(onError);
   onErrorRef.current = onError;
+
+  const onNonOAuthErrorRef = useRef(onNonOAuthError);
+  onNonOAuthErrorRef.current = onNonOAuthError;
 
   useEffect(() => {
     if (!scriptLoadedSuccessfully) return;
@@ -95,6 +111,9 @@ export default function useGoogleLogin({
         if (response.error) return onErrorRef.current?.(response);
 
         onSuccessRef.current?.(response as any);
+      },
+      error_callback: (nonOAuthError: NonOAuthError) => {
+        onNonOAuthErrorRef.current?.(nonOAuthError);
       },
       ...props,
     });
