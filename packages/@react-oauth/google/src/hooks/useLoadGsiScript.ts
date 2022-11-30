@@ -28,6 +28,7 @@ export default function useLoadGsiScript(
   useEffect(() => {
     const scriptTag = document.createElement('script');
     scriptTag.src = 'https://accounts.google.com/gsi/client';
+    scriptTag.type = 'text/javascript';
     scriptTag.async = true;
     scriptTag.defer = true;
     scriptTag.onload = () => {
