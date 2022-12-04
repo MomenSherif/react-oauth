@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.5.1
+
+### Patch Changes
+
+- [`2b35b38`](https://github.com/MomenSherif/react-oauth/commit/2b35b38065bdcb7d7bb6d2a062b221e620f9d091) Thanks [@MomenSherif](https://github.com/MomenSherif)! - Support non ouath error for useGoogleLogin
+
 ## 0.5.0
 
 ### Minor Changes
