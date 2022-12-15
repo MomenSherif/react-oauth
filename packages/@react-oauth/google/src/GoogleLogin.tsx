@@ -13,6 +13,8 @@ import {
 const containerHeightMap = { large: 40, medium: 32, small: 20 };
 
 export type GoogleLoginProps = {
+  id: string;
+  className: string;
   onSuccess: (credentialResponse: CredentialResponse) => void;
   onError?: () => void;
   promptMomentNotification?: MomenListener;
@@ -21,6 +23,8 @@ export type GoogleLoginProps = {
   GsiButtonConfiguration;
 
 export default function GoogleLogin({
+  id,
+  className,
   onSuccess,
   onError,
   useOneTap,
@@ -100,6 +104,11 @@ export default function GoogleLogin({
   ]);
 
   return (
-    <div ref={btnContainerRef} style={{ height: containerHeightMap[size] }} />
+    <div
+      id={id}
+      className={className}
+      ref={btnContainerRef}
+      style={{ height: containerHeightMap[size] }}
+    />
   );
 }
