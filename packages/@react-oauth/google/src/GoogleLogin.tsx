@@ -13,8 +13,8 @@ import {
 const containerHeightMap = { large: 40, medium: 32, small: 20 };
 
 export type GoogleLoginProps = {
-  id: string;
-  className: string;
+  id?: string;
+  className?: string;
   onSuccess: (credentialResponse: CredentialResponse) => void;
   onError?: () => void;
   promptMomentNotification?: MomenListener;
