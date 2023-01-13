@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.6.0
+
+### Minor Changes
+
+- [#150](https://github.com/MomenSherif/react-oauth/pull/150) [`41acd39`](https://github.com/MomenSherif/react-oauth/commit/41acd39474458ca05db7c08aaea7f78e047a95ef) Thanks [@niksauer](https://github.com/niksauer)! - add click_listener for GoogleLogin button
+
 ## 0.5.1
 
 ### Patch Changes
