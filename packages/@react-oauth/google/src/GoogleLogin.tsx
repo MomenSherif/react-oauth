@@ -33,6 +33,7 @@ export default function GoogleLogin({
   logo_alignment,
   width,
   locale,
+  click_listener,
   ...props
 }: GoogleLoginProps) {
   const btnContainerRef = useRef<HTMLDivElement>(null);
@@ -76,6 +77,7 @@ export default function GoogleLogin({
       logo_alignment,
       width,
       locale,
+      click_listener,
     });
 
     if (useOneTap)

@@ -7,7 +7,6 @@ interface Window {
         renderButton: (
           parent: HTMLElement,
           options: GsiButtonConfiguration,
-          clickHandler?: () => void,
         ) => void;
         disableAutoSelect: () => void;
         storeCredential: (
