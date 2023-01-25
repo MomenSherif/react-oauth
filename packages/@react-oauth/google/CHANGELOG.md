@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.6.1
+
+### Patch Changes
+
+- [`7e8b73e`](https://github.com/MomenSherif/react-oauth/commit/7e8b73e75ae9d0c812808ce60c7f46805c5c76ea) Thanks [@MomenSherif](https://github.com/MomenSherif)! - fix: useGoogleLogin login methods error before js loads
+
 ## 0.6.0
 
 ### Minor Changes
