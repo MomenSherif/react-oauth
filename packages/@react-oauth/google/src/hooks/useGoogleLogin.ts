@@ -18,7 +18,7 @@ export type NonOAuthError = {
    * https://developers.google.com/identity/oauth2/web/reference/js-reference#CodeClientConfig
    */
   type: 'popup_failed_to_open' | 'popup_closed' | 'unknown';
-}
+};
 
 interface ImplicitFlowOptions
   extends Omit<TokenClientConfig, 'client_id' | 'scope' | 'callback'> {
@@ -124,12 +124,12 @@ export default function useGoogleLogin({
 
   const loginImplicitFlow = useCallback(
     (overrideConfig?: OverridableTokenClientConfig) =>
-      clientRef.current.requestAccessToken(overrideConfig),
+      clientRef.current?.requestAccessToken(overrideConfig),
     [],
   );
 
   const loginAuthCodeFlow = useCallback(
-    () => clientRef.current.requestCode(),
+    () => clientRef.current?.requestCode(),
     [],
   );
 
