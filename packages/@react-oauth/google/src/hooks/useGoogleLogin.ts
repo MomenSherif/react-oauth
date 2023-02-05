@@ -84,6 +84,7 @@ export default function useGoogleLogin({
   onError,
   onNonOAuthError,
   overrideScope,
+  state,
   ...props
 }: UseGoogleLoginOptions): unknown {
   const { clientId, scriptLoadedSuccessfully } = useGoogleOAuth();
@@ -115,12 +116,13 @@ export default function useGoogleLogin({
       error_callback: (nonOAuthError: NonOAuthError) => {
         onNonOAuthErrorRef.current?.(nonOAuthError);
       },
+      state,
       ...props,
     });
 
     clientRef.current = client;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clientId, scriptLoadedSuccessfully, flow, scope]);
+  }, [clientId, scriptLoadedSuccessfully, flow, scope, state]);
 
   const loginImplicitFlow = useCallback(
     (overrideConfig?: OverridableTokenClientConfig) =>
