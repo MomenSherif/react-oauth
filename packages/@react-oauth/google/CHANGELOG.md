@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.7.0
+
+### Minor Changes
+
+- [#177](https://github.com/MomenSherif/react-oauth/pull/177) [`715c4e8`](https://github.com/MomenSherif/react-oauth/commit/715c4e89f0e421bd16000d29ca79a8b597a77e35) Thanks [@MicahRamirez](https://github.com/MicahRamirez)! - Added state as part of the dependency array in useGoogleLogin to allow updates to the state in redirect mode
+
 ## 0.6.1
 
 ### Patch Changes
