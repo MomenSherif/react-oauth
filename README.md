@@ -131,8 +131,9 @@ useGoogleOneTapLogin({
 
 ### Custom login button (implicit & authorization code flow)
 
-You can use `useGoogleLogin` hook to obtain access and refresh tokens directly, or get auth code to later exchange it to other tokens.
-Note that this hook does not return `id_token`.
+You can use `useGoogleLogin` hook to obtain access and refresh tokens directly using `implicit` flow,
+or obtain auth code to later exchange it to other tokens with `auth-code` flow.
+Note that this hook is not designed to return `id_token`, use `GoogleLogin` or token exchange instead.
 
 #### Implicit flow
 
