@@ -37,7 +37,7 @@ export default function useGoogleOneTapLogin({
   useEffect(() => {
     if (!scriptLoadedSuccessfully) return;
 
-    window.google?.accounts.id.initialize({
+    window?.google?.accounts?.id?.initialize({
       client_id: clientId,
       callback: (credentialResponse: GoogleCredentialResponse) => {
         if (!credentialResponse?.credential) {
@@ -55,10 +55,10 @@ export default function useGoogleOneTapLogin({
       cancel_on_tap_outside,
     });
 
-    window.google?.accounts.id.prompt(promptMomentNotificationRef.current);
+    window?.google?.accounts?.id?.prompt(promptMomentNotificationRef.current);
 
     return () => {
-      window.google?.accounts.id.cancel();
+      window?.google?.accounts?.id?.cancel();
     };
   }, [
     clientId,

@@ -9,11 +9,13 @@ export default function hasGrantedAnyScopeGoogle(
   firstScope: string,
   ...restScopes: string[]
 ): boolean {
-  if (!window.google) return false;
+  if (!window?.google) return false;
 
-  return window.google.accounts.oauth2.hasGrantedAnyScope(
-    tokenResponse,
-    firstScope,
-    ...restScopes,
+  return (
+    window?.google?.accounts?.oauth2?.hasGrantedAnyScope(
+      tokenResponse,
+      firstScope,
+      ...restScopes,
+    ) || false
   );
 }
