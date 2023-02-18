@@ -105,7 +105,7 @@ export default function useGoogleLogin({
     const clientMethod =
       flow === 'implicit' ? 'initTokenClient' : 'initCodeClient';
 
-    const client = window.google?.accounts.oauth2[clientMethod]({
+    const client = window?.google?.accounts.oauth2[clientMethod]({
       client_id: clientId,
       scope: overrideScope ? scope : `openid profile email ${scope}`,
       callback: (response: TokenResponse | CodeResponse) => {

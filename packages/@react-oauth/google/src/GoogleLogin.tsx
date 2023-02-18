@@ -51,7 +51,7 @@ export default function GoogleLogin({
   useEffect(() => {
     if (!scriptLoadedSuccessfully) return;
 
-    window.google?.accounts.id.initialize({
+    window?.google?.accounts?.id?.initialize({
       client_id: clientId,
       callback: (credentialResponse: GoogleCredentialResponse) => {
         if (!credentialResponse?.credential) {
@@ -68,7 +68,7 @@ export default function GoogleLogin({
       ...props,
     });
 
-    window.google?.accounts.id.renderButton(btnContainerRef.current!, {
+    window?.google?.accounts?.id?.renderButton(btnContainerRef.current!, {
       type,
       theme,
       size,
@@ -81,10 +81,10 @@ export default function GoogleLogin({
     });
 
     if (useOneTap)
-      window.google?.accounts.id.prompt(promptMomentNotificationRef.current);
+      window?.google?.accounts?.id?.prompt(promptMomentNotificationRef.current);
 
     return () => {
-      if (useOneTap) window.google?.accounts.id.cancel();
+      if (useOneTap) window?.google?.accounts?.id?.cancel();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
