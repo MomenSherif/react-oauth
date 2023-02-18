@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.7.1
+
+### Patch Changes
+
+- [#193](https://github.com/MomenSherif/react-oauth/pull/193) [`cc60a81`](https://github.com/MomenSherif/react-oauth/commit/cc60a8117857cc5ceaa0143e4f48512e8ee8af4f) Thanks [@jimcapel](https://github.com/jimcapel)! - Fixed a crash when window.google.accounts.id was undefined
+
 ## 0.7.0
 
 ### Minor Changes
