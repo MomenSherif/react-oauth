@@ -3,7 +3,7 @@ interface Window {
     accounts: {
       id: {
         initialize: (input: IdConfiguration) => void;
-        prompt: (momentListener?: MomenListener) => void;
+        prompt: (momentListener?: MomentListener) => void;
         renderButton: (
           parent: HTMLElement,
           options: GsiButtonConfiguration,

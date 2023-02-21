@@ -332,6 +332,6 @@ export interface CodeClientConfig {
   select_account?: boolean;
 }
 
-export type MomenListener = (
+export type MomentListener = (
   promptMomentNotification: PromptMomentNotification,
 ) => void;

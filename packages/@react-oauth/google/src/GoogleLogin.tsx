@@ -6,7 +6,7 @@ import {
   IdConfiguration,
   CredentialResponse,
   GoogleCredentialResponse,
-  MomenListener,
+  MomentListener,
   GsiButtonConfiguration,
 } from './types';
 
@@ -15,7 +15,7 @@ const containerHeightMap = { large: 40, medium: 32, small: 20 };
 export type GoogleLoginProps = {
   onSuccess: (credentialResponse: CredentialResponse) => void;
   onError?: () => void;
-  promptMomentNotification?: MomenListener;
+  promptMomentNotification?: MomentListener;
   useOneTap?: boolean;
 } & Omit<IdConfiguration, 'client_id' | 'callback'> &
   GsiButtonConfiguration;
