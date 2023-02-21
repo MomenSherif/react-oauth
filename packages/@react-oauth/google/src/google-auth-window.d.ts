@@ -27,12 +27,12 @@ interface Window {
           requestCode: () => void;
         };
         hasGrantedAnyScope: (
-          tokenRsponse: TokenResponse,
+          tokenResponse: TokenResponse,
           firstScope: string,
           ...restScopes: string[]
         ) => boolean;
         hasGrantedAllScopes: (
-          tokenRsponse: TokenResponse,
+          tokenResponse: TokenResponse,
           firstScope: string,
           ...restScopes: string[]
         ) => boolean;
