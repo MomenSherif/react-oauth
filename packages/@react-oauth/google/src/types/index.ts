@@ -160,6 +160,15 @@ export interface TokenResponse {
   error_uri?: string;
 }
 
+export type NonOAuthError = {
+  /**
+   * Some non-OAuth errors, such as the popup window is failed to open;
+   * or closed before an OAuth response is returned.
+   * https://developers.google.com/identity/oauth2/web/reference/js-reference#TokenClientConfig
+   * https://developers.google.com/identity/oauth2/web/reference/js-reference#CodeClientConfig
+   */
+  type: 'popup_failed_to_open' | 'popup_closed' | 'unknown';
+};
 export interface TokenClientConfig {
   /**
    *  The client ID for your application. You can find this value in the
@@ -179,6 +188,12 @@ export interface TokenClientConfig {
    * The property will be ignored by the redirect UX
    */
   callback?: (response: TokenResponse) => void;
+
+  /**
+   * Optional. The JavaScript function that handles some non-OAuth errors,
+   * such as the popup window is failed to open; or closed before an OAuth response is returned.
+   */
+  error_callback?: (nonOAuthError: NonOAuthError) => void;
 
   /**
    * Optional, defaults to 'select_account'. A space-delimited, case-sensitive list of prompts to present the user
