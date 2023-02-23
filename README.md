@@ -12,7 +12,7 @@ $ npm install @react-oauth/google@latest
 $ yarn add @react-oauth/google@latest
 ```
 
-## Demo
+## Demo & How to use to fetch user details
 
 https://react-oauth.vercel.app/
 

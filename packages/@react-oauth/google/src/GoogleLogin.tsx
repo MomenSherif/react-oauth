@@ -17,6 +17,7 @@ export type GoogleLoginProps = {
   onError?: () => void;
   promptMomentNotification?: MomentListener;
   useOneTap?: boolean;
+  containerProps?: React.ComponentPropsWithoutRef<'div'>;
 } & Omit<IdConfiguration, 'client_id' | 'callback'> &
   GsiButtonConfiguration;
 
@@ -34,6 +35,7 @@ export default function GoogleLogin({
   width,
   locale,
   click_listener,
+  containerProps,
   ...props
 }: GoogleLoginProps) {
   const btnContainerRef = useRef<HTMLDivElement>(null);
@@ -102,6 +104,10 @@ export default function GoogleLogin({
   ]);
 
   return (
-    <div ref={btnContainerRef} style={{ height: containerHeightMap[size] }} />
+    <div
+      {...containerProps}
+      ref={btnContainerRef}
+      style={{ height: containerHeightMap[size], ...containerProps?.style }}
+    />
   );
 }
