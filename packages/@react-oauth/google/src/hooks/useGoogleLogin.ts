@@ -8,17 +8,8 @@ import {
   CodeClientConfig,
   CodeResponse,
   OverridableTokenClientConfig,
+  NonOAuthError,
 } from '../types';
-
-export type NonOAuthError = {
-  /**
-   * Some non-OAuth errors, such as the popup window is failed to open;
-   * or closed before an OAuth response is returned.
-   * https://developers.google.com/identity/oauth2/web/reference/js-reference#TokenClientConfig
-   * https://developers.google.com/identity/oauth2/web/reference/js-reference#CodeClientConfig
-   */
-  type: 'popup_failed_to_open' | 'popup_closed' | 'unknown';
-};
 
 interface ImplicitFlowOptions
   extends Omit<TokenClientConfig, 'client_id' | 'scope' | 'callback'> {
