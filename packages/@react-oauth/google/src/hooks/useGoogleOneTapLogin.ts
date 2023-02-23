@@ -5,13 +5,13 @@ import { extractClientId } from '../utils';
 import {
   CredentialResponse,
   GoogleCredentialResponse,
-  MomenListener,
+  MomentListener,
 } from '../types';
 
 interface UseGoogleOneTapLoginOptions {
   onSuccess: (credentialResponse: CredentialResponse) => void;
   onError?: () => void;
-  promptMomentNotification?: MomenListener;
+  promptMomentNotification?: MomentListener;
   cancel_on_tap_outside?: boolean;
   hosted_domain?: string;
 }
