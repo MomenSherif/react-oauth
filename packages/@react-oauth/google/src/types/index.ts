@@ -1,8 +1,8 @@
-type Context = 'signin' | 'signup' | 'use';
+export type Context = 'signin' | 'signup' | 'use';
 
-type UxMode = 'popup' | 'redirect';
+export type UxMode = 'popup' | 'redirect';
 
-type ErrorCode =
+export type ErrorCode =
   | 'invalid_request'
   | 'access_denied'
   | 'unauthorized_client'
