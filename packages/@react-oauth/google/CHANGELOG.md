@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.8.0
+
+### Minor Changes
+
+- [`1cc9069`](https://github.com/MomenSherif/react-oauth/commit/1cc9069caf6c294806c11124519e289a5484ee2b) Thanks [@MomenSherif](https://github.com/MomenSherif)! - add container props to div button container
+
 ## 0.7.3
 
 ### Patch Changes
