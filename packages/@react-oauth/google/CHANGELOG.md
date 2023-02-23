@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.7.3
+
+### Patch Changes
+
+- [#199](https://github.com/MomenSherif/react-oauth/pull/199) [`934e58b`](https://github.com/MomenSherif/react-oauth/commit/934e58b1189864f8f72461e687988ada04256a61) Thanks [@abereghici](https://github.com/abereghici)! - Improved definition types. Added missing error_callback function in TokenResponse type"
+
 ## 0.7.1
 
 ### Patch Changes
