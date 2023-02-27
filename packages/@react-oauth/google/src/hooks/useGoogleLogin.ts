@@ -59,9 +59,6 @@ interface CredentialFlowOptions
   extends Omit<IdConfiguration, 'client_id' | 'callback'> {
   onSuccess?: CredentialOnSuccess;
   onError?: CredentialOnError;
-  // onNonOAuthError?: (nonOAuthError: NonOAuthError) => void;
-  // scope?: CodeResponse['scope'];
-  // overrideScope?: boolean;
   state?: never;
   promptMomentNotification?: MomentListener;
 }
