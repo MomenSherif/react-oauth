@@ -129,7 +129,7 @@ useGoogleOneTapLogin({
 });
 ```
 
-### Custom login button (implicit & authorization code flow)
+### Custom login button (implicit, authorization code & credential flow)
 
 #### Implicit flow
 
@@ -155,6 +155,23 @@ import { useGoogleLogin } from '@react-oauth/google';
 const login = useGoogleLogin({
   onSuccess: codeResponse => console.log(codeResponse),
   flow: 'auth-code',
+});
+
+<MyCustomButton onClick={() => login()}>
+  Sign in with Google 🚀{' '}
+</MyCustomButton>;
+```
+
+#### Credential flow
+
+This will return a JWT token in `tokenResponse.credential`.
+
+```jsx
+import { useGoogleLogin } from '@react-oauth/google';
+
+const login = useGoogleLogin({
+  onSuccess: credentialsResponse => console.log(tokenResponse),
+  flow: 'credential',
 });
 
 <MyCustomButton onClick={() => login()}>
