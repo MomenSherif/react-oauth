@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useGoogleOAuth } from '../GoogleOAuthProvider';
-import {
+import type {
   CodeClientConfig,
   CodeResponse,
   CredentialResponse,
@@ -56,12 +56,12 @@ type CredentialOnSuccess = (
 ) => void;
 type CredentialOnError = () => void;
 interface CredentialFlowOptions
-  extends Omit<IdConfiguration, 'client_id' | 'scope' | 'callback'> {
+  extends Omit<IdConfiguration, 'client_id' | 'callback'> {
   onSuccess?: CredentialOnSuccess;
   onError?: CredentialOnError;
-  onNonOAuthError?: (nonOAuthError: NonOAuthError) => void;
-  scope?: CodeResponse['scope'];
-  overrideScope?: boolean;
+  // onNonOAuthError?: (nonOAuthError: NonOAuthError) => void;
+  // scope?: CodeResponse['scope'];
+  // overrideScope?: boolean;
   state?: never;
   promptMomentNotification?: MomentListener;
 }
@@ -95,14 +95,23 @@ export default function useGoogleLogin(
 
 export default function useGoogleLogin({
   flow = 'implicit',
-  scope = '',
   onSuccess,
   onError,
-  onNonOAuthError,
-  overrideScope,
   state,
   ...props
 }: UseGoogleLoginOptions): unknown {
+  const {
+    scope = '',
+    onNonOAuthError,
+    overrideScope,
+    ...implicitOrAuthProps
+  } = props as
+    | UseGoogleLoginOptionsImplicitFlow
+    | UseGoogleLoginOptionsAuthCodeFlow;
+
+  const { promptMomentNotification, ...credentialsProps } =
+    props as UseGoogleLoginOptionsCredentialFlow;
+
   const { clientId, scriptLoadedSuccessfully } = useGoogleOAuth();
   const clientRef = useRef<any>();
 
@@ -115,12 +124,8 @@ export default function useGoogleLogin({
   const onNonOAuthErrorRef = useRef(onNonOAuthError);
   onNonOAuthErrorRef.current = onNonOAuthError;
 
-  const promptMomentNotificationRef = useRef(
-    (props as UseGoogleLoginOptionsCredentialFlow).promptMomentNotification,
-  );
-  promptMomentNotificationRef.current = (
-    props as UseGoogleLoginOptionsCredentialFlow
-  ).promptMomentNotification;
+  const promptMomentNotificationRef = useRef(promptMomentNotification);
+  promptMomentNotificationRef.current = promptMomentNotification;
 
   useEffect(() => {
     if (!scriptLoadedSuccessfully) return;
@@ -144,12 +149,38 @@ export default function useGoogleLogin({
           onNonOAuthErrorRef.current?.(nonOAuthError);
         },
         state,
-        ...props,
+        ...implicitOrAuthProps,
       });
-    }
+    } else {
+      window?.google?.accounts?.id?.initialize({
+        client_id: clientId,
+        callback: (credentialResponse: GoogleCredentialResponse) => {
+          if (!credentialResponse?.credential) {
+            return (onErrorRef.current as CredentialOnError)?.();
+          }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clientId, scriptLoadedSuccessfully, flow, scope, state]);
+          const { credential, select_by } = credentialResponse;
+          (onSuccessRef.current as CredentialOnSuccess)?.({
+            credential,
+            clientId: extractClientId(credentialResponse),
+            select_by,
+          });
+        },
+        ...credentialsProps,
+      });
+
+      clientRef.current = window?.google?.accounts?.id;
+    }
+  }, [
+    clientId,
+    credentialsProps,
+    flow,
+    implicitOrAuthProps,
+    overrideScope,
+    scope,
+    scriptLoadedSuccessfully,
+    state,
+  ]);
 
   const loginImplicitFlow = useCallback(
     (overrideConfig?: OverridableTokenClientConfig) =>
@@ -162,33 +193,10 @@ export default function useGoogleLogin({
     [],
   );
 
-  const loginCredentialFlow = useCallback(() => {
-    console.log(scriptLoadedSuccessfully, flow);
-
-    if (!scriptLoadedSuccessfully) return;
-    if (flow !== 'credential') return;
-
-    window?.google?.accounts?.id?.initialize({
-      client_id: clientId,
-      callback: (credentialResponse: GoogleCredentialResponse) => {
-        console.log(credentialResponse);
-
-        if (!credentialResponse?.credential) {
-          return (onErrorRef.current as CredentialOnError)?.();
-        }
-
-        const { credential, select_by } = credentialResponse;
-        (onSuccessRef.current as CredentialOnSuccess)?.({
-          credential,
-          clientId: extractClientId(credentialResponse),
-          select_by,
-        });
-      },
-    });
-
-    console.log('will prompt', window?.google?.accounts?.id?.prompt);
-    window?.google?.accounts?.id?.prompt(promptMomentNotificationRef.current);
-  }, [clientId, scriptLoadedSuccessfully, flow]);
+  const loginCredentialFlow = useCallback(
+    () => clientRef.current?.prompt(promptMomentNotificationRef.current),
+    [],
+  );
 
   switch (flow) {
     case 'implicit':
