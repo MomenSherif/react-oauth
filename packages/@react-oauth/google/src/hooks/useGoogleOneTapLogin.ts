@@ -14,6 +14,7 @@ interface UseGoogleOneTapLoginOptions {
   promptMomentNotification?: MomentListener;
   cancel_on_tap_outside?: boolean;
   hosted_domain?: string;
+  disabled?: boolean;
 }
 
 export default function useGoogleOneTapLogin({
@@ -22,6 +23,7 @@ export default function useGoogleOneTapLogin({
   promptMomentNotification,
   cancel_on_tap_outside,
   hosted_domain,
+  disabled,
 }: UseGoogleOneTapLoginOptions): void {
   const { clientId, scriptLoadedSuccessfully } = useGoogleOAuth();
 
@@ -36,6 +38,11 @@ export default function useGoogleOneTapLogin({
 
   useEffect(() => {
     if (!scriptLoadedSuccessfully) return;
+
+    if (disabled) {
+      window?.google?.accounts?.id?.cancel();
+      return;
+    }
 
     window?.google?.accounts?.id?.initialize({
       client_id: clientId,
@@ -65,5 +72,6 @@ export default function useGoogleOneTapLogin({
     scriptLoadedSuccessfully,
     cancel_on_tap_outside,
     hosted_domain,
+    disabled,
   ]);
 }
