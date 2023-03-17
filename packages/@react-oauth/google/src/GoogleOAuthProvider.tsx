@@ -18,11 +18,13 @@ interface GoogleOAuthProviderProps extends UseLoadGsiScriptOptions {
 
 export default function GoogleOAuthProvider({
   clientId,
+  nonce,
   onScriptLoadSuccess,
   onScriptLoadError,
   children,
 }: GoogleOAuthProviderProps) {
   const scriptLoadedSuccessfully = useLoadGsiScript({
+    nonce,
     onScriptLoadSuccess,
     onScriptLoadError,
   });
