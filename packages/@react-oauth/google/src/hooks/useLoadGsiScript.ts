@@ -49,7 +49,7 @@ export default function useLoadGsiScript(
     return () => {
       document.body.removeChild(scriptTag);
     };
-  }, []);
+  }, [nonce]);
 
   return scriptLoadedSuccessfully;
 }
