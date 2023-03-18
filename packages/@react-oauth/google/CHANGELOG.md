@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.8.1
+
+### Patch Changes
+
+- [#230](https://github.com/MomenSherif/react-oauth/pull/230) [`c9238a7`](https://github.com/MomenSherif/react-oauth/commit/c9238a794106189464d451f20333f5d8ad866854) Thanks [@danfsd](https://github.com/danfsd)! - Add minor CSP support by accepting "nonce" and propagating it to GSI script & inline style
+
 ## 0.8.0
 
 ### Minor Changes
