@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.9.0
+
+### Minor Changes
+
+- [#222](https://github.com/MomenSherif/react-oauth/pull/222) [`2364e3f`](https://github.com/MomenSherif/react-oauth/commit/2364e3f48a0672d76a1089b09083ab9bad408990) Thanks [@p1yu5h](https://github.com/p1yu5h)! - Added disabled prop to cancel the one tap login popup
+
 ## 0.8.1
 
 ### Patch Changes
