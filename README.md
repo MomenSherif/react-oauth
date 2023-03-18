@@ -193,6 +193,7 @@ const hasAccess = hasGrantedAnyScopeGoogle(
 | Required | Prop                | Type       | Description                                                                 |
 | :------: | ------------------- | ---------- | --------------------------------------------------------------------------- |
 |    ✓     | clientId            | `string`   | [**Google API client ID**](https://console.cloud.google.com/apis/dashboard) |
+|          | nonce               | `string`   | Nonce applied to GSI script tag. Propagates to GSI's inline style tag       |
 |          | onScriptLoadSuccess | `function` | Callback fires on load gsi script success                                   |
 |          | onScriptLoadError   | `function` | Callback fires on load gsi script failure                                   |
 
