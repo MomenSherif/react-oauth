@@ -184,6 +184,14 @@ export interface TokenClientConfig {
   scope: string;
 
   /**
+  * Optional, defaults to true. Enables applications to use incremental authorization to
+  * request access to additional scopes in context. If you set this parameter's value to
+  * false and the authorization request is granted, then the new access token will only 
+  * cover any scopes to which the scope requested in this TokenClientConfig.
+  */
+  include_granted_scopes?: boolean;
+
+  /**
    * Required for popup UX. The JavaScript function name that handles returned code response
    * The property will be ignored by the redirect UX
    */
@@ -290,6 +298,14 @@ export interface CodeClientConfig {
    * These values inform the consent screen that Google displays to the user
    */
   scope: string;
+
+  /**
+   * Optional, defaults to true. Enables applications to use incremental authorization to
+   * request access to additional scopes in context. If you set this parameter's value to
+   * false and the authorization request is granted, then the new access token will only 
+   * cover any scopes to which the scope requested in this CodeClientConfig.
+   */
+  include_granted_scopes?: boolean;
 
   /**
    * Required for redirect UX. Determines where the API server redirects
