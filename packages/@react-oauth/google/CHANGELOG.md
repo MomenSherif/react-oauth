@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.9.1
+
+### Patch Changes
+
+- [#236](https://github.com/MomenSherif/react-oauth/pull/236) [`a9832bf`](https://github.com/MomenSherif/react-oauth/commit/a9832bfb05536e03b05e77cbcd573394db68ab4d) Thanks [@jcayabyab](https://github.com/jcayabyab)! - add include_granted_scopes to CodeClientConfig and TokenClientConfig
+
 ## 0.9.0
 
 ### Minor Changes
