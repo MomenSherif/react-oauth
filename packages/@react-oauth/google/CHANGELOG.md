@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.10.0
+
+### Minor Changes
+
+- [#249](https://github.com/MomenSherif/react-oauth/pull/249) [`2217cc5`](https://github.com/MomenSherif/react-oauth/commit/2217cc508c7c94587f114abfd52548d5aa06dedb) Thanks [@MomenSherif](https://github.com/MomenSherif)! - add prompt_parent_id to change the prompt default's position
+
 ## 0.9.1
 
 ### Patch Changes
