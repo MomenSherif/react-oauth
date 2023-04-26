@@ -14,6 +14,7 @@ interface UseGoogleOneTapLoginOptions {
   promptMomentNotification?: MomentListener;
   cancel_on_tap_outside?: boolean;
   prompt_parent_id?: string;
+  state_cookie_domain?: string;
   hosted_domain?: string;
   disabled?: boolean;
 }
@@ -24,6 +25,7 @@ export default function useGoogleOneTapLogin({
   promptMomentNotification,
   cancel_on_tap_outside,
   prompt_parent_id,
+  state_cookie_domain,
   hosted_domain,
   disabled,
 }: UseGoogleOneTapLoginOptions): void {
@@ -63,6 +65,7 @@ export default function useGoogleOneTapLogin({
       hosted_domain,
       cancel_on_tap_outside,
       prompt_parent_id,
+      state_cookie_domain,
     });
 
     window?.google?.accounts?.id?.prompt(promptMomentNotificationRef.current);
@@ -75,6 +78,7 @@ export default function useGoogleOneTapLogin({
     scriptLoadedSuccessfully,
     cancel_on_tap_outside,
     prompt_parent_id,
+    state_cookie_domain,
     hosted_domain,
     disabled,
   ]);
