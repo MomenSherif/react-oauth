@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.11.0
+
+### Minor Changes
+
+- [#253](https://github.com/MomenSherif/react-oauth/pull/253) [`3826f02`](https://github.com/MomenSherif/react-oauth/commit/3826f02e244a20e3f67dc6a6848950a8f58c26f2) Thanks [@LivioGama](https://github.com/LivioGama)! - add state_cookie_domain to allow multiple subdomains connection
+
 ## 0.10.0
 
 ### Minor Changes
