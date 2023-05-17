@@ -62,7 +62,7 @@ export interface CredentialResponse {
     | 'user_2tap'
     | 'btn'
     | 'btn_confirm'
-    | 'brn_add_session'
+    | 'btn_add_session'
     | 'btn_confirm_add_session';
   clientId?: string;
 }
