@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.11.1
+
+### Patch Changes
+
+- [#278](https://github.com/MomenSherif/react-oauth/pull/278) [`cb2a8ce`](https://github.com/MomenSherif/react-oauth/commit/cb2a8ceb7cad2d44dbaf4e0320b4a45bbaec683e) Thanks [@MomenSherif](https://github.com/MomenSherif)! - allow width to be string or number for google login button
+
 ## 0.11.0
 
 ### Minor Changes
