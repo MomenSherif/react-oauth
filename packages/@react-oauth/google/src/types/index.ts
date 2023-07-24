@@ -85,7 +85,7 @@ export interface GsiButtonConfiguration {
   /**	The Google [logo alignment](https://developers.google.com/identity/gsi/web/reference/js-reference#logo_alignment): left or center */
   logo_alignment?: 'left' | 'center';
   /** The button [width](https://developers.google.com/identity/gsi/web/reference/js-reference#width), in pixels */
-  width?: string;
+  width?: string | number;
   /** If set, then the button [language](https://developers.google.com/identity/gsi/web/reference/js-reference#locale) is rendered */
   locale?: string;
   /** If set, this [function](https://developers.google.com/identity/gsi/web/reference/js-reference#click_listener) will be called when the Sign in with Google button is clicked. */
@@ -184,11 +184,11 @@ export interface TokenClientConfig {
   scope: string;
 
   /**
-  * Optional, defaults to true. Enables applications to use incremental authorization to
-  * request access to additional scopes in context. If you set this parameter's value to
-  * false and the authorization request is granted, then the new access token will only 
-  * cover any scopes to which the scope requested in this TokenClientConfig.
-  */
+   * Optional, defaults to true. Enables applications to use incremental authorization to
+   * request access to additional scopes in context. If you set this parameter's value to
+   * false and the authorization request is granted, then the new access token will only
+   * cover any scopes to which the scope requested in this TokenClientConfig.
+   */
   include_granted_scopes?: boolean;
 
   /**
@@ -302,7 +302,7 @@ export interface CodeClientConfig {
   /**
    * Optional, defaults to true. Enables applications to use incremental authorization to
    * request access to additional scopes in context. If you set this parameter's value to
-   * false and the authorization request is granted, then the new access token will only 
+   * false and the authorization request is granted, then the new access token will only
    * cover any scopes to which the scope requested in this CodeClientConfig.
    */
   include_granted_scopes?: boolean;
