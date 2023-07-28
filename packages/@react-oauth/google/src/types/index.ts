@@ -85,7 +85,7 @@ export interface GsiButtonConfiguration {
   /**	The Google [logo alignment](https://developers.google.com/identity/gsi/web/reference/js-reference#logo_alignment): left or center */
   logo_alignment?: 'left' | 'center';
   /** The button [width](https://developers.google.com/identity/gsi/web/reference/js-reference#width), in pixels */
-  width?: number;
+  width?: string | number;
   /** If set, then the button [language](https://developers.google.com/identity/gsi/web/reference/js-reference#locale) is rendered */
   locale?: string;
   /** If set, this [function](https://developers.google.com/identity/gsi/web/reference/js-reference#click_listener) will be called when the Sign in with Google button is clicked. */

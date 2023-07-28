@@ -32,7 +32,7 @@ export default function GoogleLogin({
   text,
   shape,
   logo_alignment,
-  width,
+  width: _width,
   locale,
   click_listener,
   containerProps,
@@ -70,6 +70,16 @@ export default function GoogleLogin({
       ...props,
     });
 
+    let width: number | undefined;
+    if (typeof _width === 'string') {
+      width = parseInt(_width);
+    } else {
+      width = _width;
+    }
+
+    if (width && isNaN(width))
+      throw new Error('GoogleLogin: width prop must be a number');
+
     window?.google?.accounts?.id?.renderButton(btnContainerRef.current!, {
       type,
       theme,
@@ -99,7 +109,7 @@ export default function GoogleLogin({
     text,
     shape,
     logo_alignment,
-    width,
+    _width,
     locale,
   ]);
 
