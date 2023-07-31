@@ -267,3 +267,8 @@ const hasAccess = hasGrantedAnyScopeGoogle(
 |          | cancel_on_tap_outside    | `boolean`                                          | Controls whether to cancel the prompt if the user clicks outside of the prompt                                                                                                                                                                                                    |
 |          | hosted_domain            | `string`                                           | If your application knows the Workspace domain the user belongs to, use this to provide a hint to Google. For more information, see the [hd](https://developers.google.com/identity/protocols/oauth2/openid-connect#authenticationuriparameters) field in the OpenID Connect docs |
 |          | disabled                 | `boolean`                                          | Controls whether to cancel the popup in cases such as when the user is already logged in                                                                                                                                                                                          |
+
+## Contributing
+
+If you want to contribute to this project please check out [contributing guide](CONTRIBUTING.md).
+We greatly appreciate any work contributed, no matter how small!
