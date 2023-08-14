@@ -77,7 +77,7 @@ export default function GoogleLogin({
       text,
       shape,
       logo_alignment,
-      width,
+      width: typeof width !== 'number' ? width : `${width}px`,
       locale,
       click_listener,
     });
