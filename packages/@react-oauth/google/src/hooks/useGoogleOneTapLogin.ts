@@ -17,6 +17,7 @@ interface UseGoogleOneTapLoginOptions {
   state_cookie_domain?: string;
   hosted_domain?: string;
   disabled?: boolean;
+  auto_select?: boolean;
 }
 
 export default function useGoogleOneTapLogin({
@@ -28,6 +29,7 @@ export default function useGoogleOneTapLogin({
   state_cookie_domain,
   hosted_domain,
   disabled,
+  auto_select,
 }: UseGoogleOneTapLoginOptions): void {
   const { clientId, scriptLoadedSuccessfully } = useGoogleOAuth();
 
@@ -66,6 +68,7 @@ export default function useGoogleOneTapLogin({
       cancel_on_tap_outside,
       prompt_parent_id,
       state_cookie_domain,
+      auto_select,
     });
 
     window?.google?.accounts?.id?.prompt(promptMomentNotificationRef.current);
@@ -81,5 +84,6 @@ export default function useGoogleOneTapLogin({
     state_cookie_domain,
     hosted_domain,
     disabled,
+    auto_select,
   ]);
 }
