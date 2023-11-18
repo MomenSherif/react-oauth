@@ -17,10 +17,12 @@ module.exports = packageJson =>
         {
           file: packageJson.main,
           format: 'cjs',
+          banner: "'use client'",
         },
         {
           file: packageJson.module,
           format: 'esm',
+          banner: "'use client'",
         },
       ],
       external: Object.keys(packageJson.dependencies || {}).concat(
