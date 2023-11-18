@@ -1,5 +1,12 @@
 # @react-oauth/google
 
+## 0.12.0
+
+### Minor Changes
+
+- [#316](https://github.com/MomenSherif/react-oauth/pull/316) [`9c23c44`](https://github.com/MomenSherif/react-oauth/commit/9c23c442d9a383d47fab6061b5842d6da4b22e5a) Thanks [@MomenSherif](https://github.com/MomenSherif)! - - add support for use_fedcm_for_prompt for fedcm migration
+  - export `useGoogleOAuth` returns { scriptLoadedSuccessfully: boolean; clientId: string }
+
 ## 0.11.1
 
 ### Patch Changes
