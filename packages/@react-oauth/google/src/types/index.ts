@@ -49,6 +49,11 @@ export interface IdConfiguration {
    * field in the OpenID Connect docs.
    */
   hosted_domain?: string;
+  /**
+   * Allow the browser to control user sign-in prompts and mediate the sign-in flow between your website and Google.
+   * @default false
+   */
+  use_fedcm_for_prompt?: boolean;
 }
 
 export interface CredentialResponse {
@@ -99,7 +104,11 @@ export interface PromptMomentNotification {
   isDisplayed: () => boolean;
   /** Is this notification for a display moment, and the UI isn't displayed? */
   isNotDisplayed: () => boolean;
-  /** The detailed reason why the UI isn't displayed */
+  /**
+   * The detailed reason why the UI isn't displayed
+   * Avoid using `opt_out_or_no_session`. When FedCM is enabled,
+   * this value is not supported. See Migrate to FedCM page for more information.
+   * */
   getNotDisplayedReason: () =>
     | 'browser_not_supported'
     | 'invalid_client'
