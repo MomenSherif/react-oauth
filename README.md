@@ -140,9 +140,7 @@ const login = useGoogleLogin({
   onSuccess: tokenResponse => console.log(tokenResponse),
 });
 
-<MyCustomButton onClick={() => login()}>
-  Sign in with Google 🚀{' '}
-</MyCustomButton>;
+<MyCustomButton onClick={() => login()}>Sign in with Google 🚀</MyCustomButton>;
 ```
 
 #### Authorization code flow
@@ -157,9 +155,7 @@ const login = useGoogleLogin({
   flow: 'auth-code',
 });
 
-<MyCustomButton onClick={() => login()}>
-  Sign in with Google 🚀{' '}
-</MyCustomButton>;
+<MyCustomButton onClick={() => login()}>Sign in with Google 🚀</MyCustomButton>;
 ```
 
 #### Checks if the user granted all the specified scope or scopes
@@ -185,6 +181,8 @@ const hasAccess = hasGrantedAnyScopeGoogle(
   'google-scope-2',
 );
 ```
+
+#### [Content Security Policy (if needed)](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid#content_security_policy)
 
 ## API
 
@@ -227,6 +225,7 @@ const hasAccess = hasGrantedAnyScopeGoogle(
 |          | intermediate_iframe_close_callback | `function`                                                    | Overrides the default intermediate iframe behavior when users manually close One Tap                                                                                                                                                                                              |
 |          | itp_support                        | `boolean`                                                     | Enables upgraded One Tap UX on ITP browsers                                                                                                                                                                                                                                       |
 |          | hosted_domain                      | `string`                                                      | If your application knows the Workspace domain the user belongs to, use this to provide a hint to Google. For more information, see the [hd](https://developers.google.com/identity/protocols/oauth2/openid-connect#authenticationuriparameters) field in the OpenID Connect docs |
+|          | use_fedcm_for_prompt               | `boolean`                                                     | Allow the browser to control user sign-in prompts and mediate the sign-in flow between your website and Google.                                                                                                                                                                   |
 
 ### useGoogleLogin (Both implicit & authorization code flow)
 
@@ -267,3 +266,4 @@ const hasAccess = hasGrantedAnyScopeGoogle(
 |          | cancel_on_tap_outside    | `boolean`                                          | Controls whether to cancel the prompt if the user clicks outside of the prompt                                                                                                                                                                                                    |
 |          | hosted_domain            | `string`                                           | If your application knows the Workspace domain the user belongs to, use this to provide a hint to Google. For more information, see the [hd](https://developers.google.com/identity/protocols/oauth2/openid-connect#authenticationuriparameters) field in the OpenID Connect docs |
 |          | disabled                 | `boolean`                                          | Controls whether to cancel the popup in cases such as when the user is already logged in                                                                                                                                                                                          |
+|          | use_fedcm_for_prompt     | `boolean`                                          | Allow the browser to control user sign-in prompts and mediate the sign-in flow between your website and Google.                                                                                                                                                                   |

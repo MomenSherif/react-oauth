@@ -1,4 +1,7 @@
-export { default as GoogleOAuthProvider } from './GoogleOAuthProvider';
+export {
+  default as GoogleOAuthProvider,
+  useGoogleOAuth,
+} from './GoogleOAuthProvider';
 export { default as GoogleLogin } from './GoogleLogin';
 export type { GoogleLoginProps } from './GoogleLogin';
 export { default as googleLogout } from './googleLogout';

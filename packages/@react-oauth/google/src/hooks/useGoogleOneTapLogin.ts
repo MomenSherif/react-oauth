@@ -2,9 +2,10 @@ import { useEffect, useRef } from 'react';
 
 import { useGoogleOAuth } from '../GoogleOAuthProvider';
 import { extractClientId } from '../utils';
-import {
+import type {
   CredentialResponse,
   GoogleCredentialResponse,
+  IdConfiguration,
   MomentListener,
 } from '../types';
 
@@ -17,6 +18,8 @@ interface UseGoogleOneTapLoginOptions {
   state_cookie_domain?: string;
   hosted_domain?: string;
   disabled?: boolean;
+  use_fedcm_for_prompt?: IdConfiguration['use_fedcm_for_prompt'];
+  auto_select?: boolean;
 }
 
 export default function useGoogleOneTapLogin({
@@ -27,7 +30,9 @@ export default function useGoogleOneTapLogin({
   prompt_parent_id,
   state_cookie_domain,
   hosted_domain,
+  use_fedcm_for_prompt = false,
   disabled,
+  auto_select,
 }: UseGoogleOneTapLoginOptions): void {
   const { clientId, scriptLoadedSuccessfully } = useGoogleOAuth();
 
@@ -66,6 +71,8 @@ export default function useGoogleOneTapLogin({
       cancel_on_tap_outside,
       prompt_parent_id,
       state_cookie_domain,
+      use_fedcm_for_prompt,
+      auto_select,
     });
 
     window?.google?.accounts?.id?.prompt(promptMomentNotificationRef.current);
@@ -80,6 +87,8 @@ export default function useGoogleOneTapLogin({
     prompt_parent_id,
     state_cookie_domain,
     hosted_domain,
+    use_fedcm_for_prompt,
     disabled,
+    auto_select,
   ]);
 }
