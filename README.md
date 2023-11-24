@@ -160,7 +160,7 @@ const login = useGoogleLogin({
 
 ### Exchange authorization code for tokens (backend)
 
-[Google Docs](https://developers.google.com/identity/protocols/oauth2/web-server#exchange-authorization-code){:target="_blank"}
+[Google Docs](https://developers.google.com/identity/protocols/oauth2/web-server#exchange-authorization-code)
 
 #### Checks if the user granted all the specified scope or scopes
 
