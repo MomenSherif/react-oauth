@@ -5,6 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <meta name="Cross-Origin-Opener-Policy" content="same-origin" />
     <meta
       name="description"
       content="Google OAuth2 using the new Google Identity Services SDK for React @react-oauth/google"
@@ -41,7 +42,7 @@
 
     <!-- Google Tag Manager -->
     <script>
-      (function (w, d, s, l, i) {
+      (function(w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
         var f = d.getElementsByTagName(s)[0],
