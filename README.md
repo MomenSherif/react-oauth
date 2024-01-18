@@ -158,6 +158,10 @@ const login = useGoogleLogin({
 <MyCustomButton onClick={() => login()}>Sign in with Google 🚀</MyCustomButton>;
 ```
 
+### Exchange authorization code for tokens (backend)
+
+[Google Docs](https://developers.google.com/identity/protocols/oauth2/web-server#exchange-authorization-code)
+
 #### Checks if the user granted all the specified scope or scopes
 
 ```jsx
