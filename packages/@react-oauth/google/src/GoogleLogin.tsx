@@ -33,13 +33,12 @@ export default function GoogleLogin({
   shape,
   logo_alignment,
   width,
-  locale,
   click_listener,
   containerProps,
   ...props
 }: GoogleLoginProps) {
   const btnContainerRef = useRef<HTMLDivElement>(null);
-  const { clientId, scriptLoadedSuccessfully } = useGoogleOAuth();
+  const { clientId, locale, scriptLoadedSuccessfully } = useGoogleOAuth();
 
   const onSuccessRef = useRef(onSuccess);
   onSuccessRef.current = onSuccess;

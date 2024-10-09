@@ -6,6 +6,7 @@ import useLoadGsiScript, {
 
 interface GoogleOAuthContextProps {
   clientId: string;
+  locale?: string;
   scriptLoadedSuccessfully: boolean;
 }
 
@@ -19,6 +20,7 @@ interface GoogleOAuthProviderProps extends UseLoadGsiScriptOptions {
 export default function GoogleOAuthProvider({
   clientId,
   nonce,
+  locale,
   onScriptLoadSuccess,
   onScriptLoadError,
   children,
@@ -27,10 +29,12 @@ export default function GoogleOAuthProvider({
     nonce,
     onScriptLoadSuccess,
     onScriptLoadError,
+    locale,
   });
 
   const contextValue = useMemo(
     () => ({
+      locale,
       clientId,
       scriptLoadedSuccessfully,
     }),
