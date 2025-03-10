@@ -73,6 +73,8 @@ import { GoogleLogin } from '@react-oauth/google';
 />;
 ```
 
+> If you are using popup mode (default), set the proper [Cross Origin Opener Policy](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid#cross_origin_opener_policy) to avoid the [blank window issue](https://github.com/google/google-api-javascript-client/issues/796): `cross-origin-opener-policy: same-origin-allow-popups`.
+
 ### One-tap
 
 ```jsx
