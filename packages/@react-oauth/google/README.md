@@ -12,7 +12,7 @@ $ npm install @react-oauth/google@latest
 $ yarn add @react-oauth/google@latest
 ```
 
-## Demo & How to use to fetch user details
+## Demo
 
 https://react-oauth.vercel.app/
 
@@ -129,7 +129,7 @@ useGoogleOneTapLogin({
 });
 ```
 
-### Custom login button (implicit & authorization code flow)
+### Custom login button (implicit, authorization code & credential flow)
 
 #### Implicit flow
 
@@ -140,7 +140,9 @@ const login = useGoogleLogin({
   onSuccess: tokenResponse => console.log(tokenResponse),
 });
 
-<MyCustomButton onClick={() => login()}>Sign in with Google 🚀</MyCustomButton>;
+<MyCustomButton onClick={() => login()}>
+  Sign in with Google 🚀{' '}
+</MyCustomButton>;
 ```
 
 #### Authorization code flow
@@ -155,7 +157,26 @@ const login = useGoogleLogin({
   flow: 'auth-code',
 });
 
-<MyCustomButton onClick={() => login()}>Sign in with Google 🚀</MyCustomButton>;
+<MyCustomButton onClick={() => login()}>
+  Sign in with Google 🚀{' '}
+</MyCustomButton>;
+```
+
+#### Credential flow
+
+This will return a JWT token in `tokenResponse.credential`.
+
+```jsx
+import { useGoogleLogin } from '@react-oauth/google';
+
+const login = useGoogleLogin({
+  onSuccess: credentialsResponse => console.log(tokenResponse),
+  flow: 'credential',
+});
+
+<MyCustomButton onClick={() => login()}>
+  Sign in with Google 🚀{' '}
+</MyCustomButton>;
 ```
 
 #### Checks if the user granted all the specified scope or scopes
@@ -182,8 +203,6 @@ const hasAccess = hasGrantedAnyScopeGoogle(
 );
 ```
 
-#### [Content Security Policy (if needed)](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid#content_security_policy)
-
 ## API
 
 ### GoogleOAuthProvider
@@ -191,7 +210,6 @@ const hasAccess = hasGrantedAnyScopeGoogle(
 | Required | Prop                | Type       | Description                                                                 |
 | :------: | ------------------- | ---------- | --------------------------------------------------------------------------- |
 |    ✓     | clientId            | `string`   | [**Google API client ID**](https://console.cloud.google.com/apis/dashboard) |
-|          | nonce               | `string`   | Nonce applied to GSI script tag. Propagates to GSI's inline style tag       |
 |          | onScriptLoadSuccess | `function` | Callback fires on load gsi script success                                   |
 |          | onScriptLoadError   | `function` | Callback fires on load gsi script failure                                   |
 
@@ -225,7 +243,6 @@ const hasAccess = hasGrantedAnyScopeGoogle(
 |          | intermediate_iframe_close_callback | `function`                                                    | Overrides the default intermediate iframe behavior when users manually close One Tap                                                                                                                                                                                              |
 |          | itp_support                        | `boolean`                                                     | Enables upgraded One Tap UX on ITP browsers                                                                                                                                                                                                                                       |
 |          | hosted_domain                      | `string`                                                      | If your application knows the Workspace domain the user belongs to, use this to provide a hint to Google. For more information, see the [hd](https://developers.google.com/identity/protocols/oauth2/openid-connect#authenticationuriparameters) field in the OpenID Connect docs |
-|          | use_fedcm_for_prompt               | `boolean`                                                     | Allow the browser to control user sign-in prompts and mediate the sign-in flow between your website and Google.                                                                                                                                                                   |
 
 ### useGoogleLogin (Both implicit & authorization code flow)
 
@@ -265,5 +282,3 @@ const hasAccess = hasGrantedAnyScopeGoogle(
 |          | promptMomentNotification | `(notification: PromptMomentNotification) => void` | [PromptMomentNotification](https://developers.google.com/identity/gsi/web/reference/js-reference) methods and description                                                                                                                                                         |
 |          | cancel_on_tap_outside    | `boolean`                                          | Controls whether to cancel the prompt if the user clicks outside of the prompt                                                                                                                                                                                                    |
 |          | hosted_domain            | `string`                                           | If your application knows the Workspace domain the user belongs to, use this to provide a hint to Google. For more information, see the [hd](https://developers.google.com/identity/protocols/oauth2/openid-connect#authenticationuriparameters) field in the OpenID Connect docs |
-|          | disabled                 | `boolean`                                          | Controls whether to cancel the popup in cases such as when the user is already logged in                                                                                                                                                                                          |
-|          | use_fedcm_for_prompt     | `boolean`                                          | Allow the browser to control user sign-in prompts and mediate the sign-in flow between your website and Google.                                                                                                                                                                   |
