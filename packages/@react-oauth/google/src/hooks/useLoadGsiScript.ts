@@ -6,6 +6,10 @@ export interface UseLoadGsiScriptOptions {
    */
   nonce?: string;
   /**
+   * ISO-639 code of [locale](https://developers.google.com/identity/gsi/web/reference/js-reference#locale) to use for content
+   */
+  locale?: string;
+  /**
    * Callback fires on load [gsi](https://accounts.google.com/gsi/client) script success
    */
   onScriptLoadSuccess?: () => void;
@@ -18,7 +22,7 @@ export interface UseLoadGsiScriptOptions {
 export default function useLoadGsiScript(
   options: UseLoadGsiScriptOptions = {},
 ): boolean {
-  const { nonce, onScriptLoadSuccess, onScriptLoadError } = options;
+  const { nonce, locale, onScriptLoadSuccess, onScriptLoadError } = options;
 
   const [scriptLoadedSuccessfully, setScriptLoadedSuccessfully] =
     useState(false);
@@ -32,6 +36,7 @@ export default function useLoadGsiScript(
   useEffect(() => {
     const scriptTag = document.createElement('script');
     scriptTag.src = 'https://accounts.google.com/gsi/client';
+    if (locale) scriptTag.src += `?hl=${locale}`;
     scriptTag.async = true;
     scriptTag.defer = true;
     scriptTag.nonce = nonce;

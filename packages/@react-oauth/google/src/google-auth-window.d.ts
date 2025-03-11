@@ -16,7 +16,7 @@ declare global {
           prompt: (momentListener?: MomentListener) => void;
           renderButton: (
             parent: HTMLElement,
-            options: GsiButtonConfiguration,
+            options: GsiButtonConfiguration & { locale?: string },
           ) => void;
           disableAutoSelect: () => void;
           storeCredential: (
