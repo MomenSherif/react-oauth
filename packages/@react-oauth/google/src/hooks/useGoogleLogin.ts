@@ -11,6 +11,24 @@ import {
   NonOAuthError,
 } from '../types';
 
+type WaitFor = (getValue: () => boolean) => Promise<void>;
+
+const waitFor: WaitFor = function waitFor(getValue) {
+  function _waitFor(getter: () => boolean, cb: () => void): void {
+    if (!getter()) {
+      setTimeout(() => {
+        _waitFor(getter, cb);
+      }, 0);
+    } else {
+      cb();
+    }
+  }
+
+  return new Promise<void>(resolve => {
+    _waitFor(getValue, resolve);
+  });
+};
+
 interface ImplicitFlowOptions
   extends Omit<TokenClientConfig, 'client_id' | 'scope' | 'callback'> {
   onSuccess?: (
@@ -116,15 +134,17 @@ export default function useGoogleLogin({
   }, [clientId, scriptLoadedSuccessfully, flow, scope, state]);
 
   const loginImplicitFlow = useCallback(
-    (overrideConfig?: OverridableTokenClientConfig) =>
-      clientRef.current?.requestAccessToken(overrideConfig),
-    [],
+    async (overrideConfig?: OverridableTokenClientConfig) => {
+      await waitFor(() => clientRef.current);
+      clientRef.current?.requestAccessToken(overrideConfig);
+    },
+    [scriptLoadedSuccessfully],
   );
 
-  const loginAuthCodeFlow = useCallback(
-    () => clientRef.current?.requestCode(),
-    [],
-  );
+  const loginAuthCodeFlow = useCallback(async () => {
+    await waitFor(() => clientRef.current);
+    clientRef.current?.requestCode();
+  }, []);
 
   return flow === 'implicit' ? loginImplicitFlow : loginAuthCodeFlow;
 }
