@@ -20,6 +20,7 @@ interface UseGoogleOneTapLoginOptions {
   disabled?: boolean;
   use_fedcm_for_prompt?: IdConfiguration['use_fedcm_for_prompt'];
   auto_select?: boolean;
+  context?: IdConfiguration['context'];
 }
 
 export default function useGoogleOneTapLogin({
@@ -33,6 +34,7 @@ export default function useGoogleOneTapLogin({
   use_fedcm_for_prompt = false,
   disabled,
   auto_select,
+  context,
 }: UseGoogleOneTapLoginOptions): void {
   const { clientId, scriptLoadedSuccessfully } = useGoogleOAuth();
 
@@ -73,6 +75,7 @@ export default function useGoogleOneTapLogin({
       state_cookie_domain,
       use_fedcm_for_prompt,
       auto_select,
+      context,
     });
 
     window?.google?.accounts?.id?.prompt(promptMomentNotificationRef.current);
@@ -90,5 +93,6 @@ export default function useGoogleOneTapLogin({
     use_fedcm_for_prompt,
     disabled,
     auto_select,
+    context,
   ]);
 }
