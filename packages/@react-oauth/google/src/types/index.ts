@@ -54,6 +54,11 @@ export interface IdConfiguration {
    * @default false
    */
   use_fedcm_for_prompt?: boolean;
+  /**
+   * Enable FedCM Button flow
+   * @default false
+   */
+  use_fedcm_for_button?: boolean;
 }
 
 export interface CredentialResponse {
