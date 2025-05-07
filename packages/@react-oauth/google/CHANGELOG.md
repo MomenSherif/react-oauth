@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.12.2
+
+### Patch Changes
+
+- [#387](https://github.com/MomenSherif/react-oauth/pull/387) [`85c49bf`](https://github.com/MomenSherif/react-oauth/commit/85c49bf8e8d130db4c3a62f0b40dbc21dde3da2a) Thanks [@pierroberto](https://github.com/pierroberto)! - Add support for FedCM Button Flow
+
 ## 0.12.1
 
 ### Patch Changes
