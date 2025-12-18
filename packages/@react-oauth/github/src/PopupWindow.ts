@@ -1,9 +1,4 @@
 import { OAuthError } from './OAuthError';
-import { parseQueryString } from './utils';
-
-// Regex patterns for URL parsing (moved to top level for performance)
-const QUERY_PREFIX_REGEX = /^\?/;
-const HASH_PREFIX_REGEX = /^#/;
 
 /**
  * Options for configuring the popup window
@@ -34,34 +29,23 @@ export type OAuthResponse = {
 };
 
 /**
- * A thenable object that represents a popup window OAuth flow
+ * A Promise that represents a popup window OAuth flow
  * Can be used directly as a Promise with .then() and .catch()
+ * Cleanup is handled automatically when the promise resolves or rejects
  */
-export type PopupWindowThenable = {
-  /** Promise-like then method */
-  then<TResult1 = OAuthResponse, TResult2 = never>(
-    onfulfilled?: (value: OAuthResponse) => TResult1 | PromiseLike<TResult1>,
-    onrejected?: (reason: unknown) => TResult2 | PromiseLike<TResult2>,
-  ): Promise<TResult1 | TResult2>;
-  /** Promise-like catch method */
-  catch<TResult = never>(
-    onrejected?: (reason: unknown) => TResult | PromiseLike<TResult>,
-  ): Promise<OAuthResponse | TResult>;
-  /** Cleanup method to close the popup and stop polling */
-  cleanup: () => void;
-};
+export type PopupWindowPromise = Promise<OAuthResponse>;
 
 /**
  * Creates and launches a popup window for OAuth authentication
  *
  * This function handles opening a popup window, polling for the OAuth response,
- * and cleaning up when done. It returns a thenable object that resolves with the
+ * and cleaning up when done. It returns a Promise that resolves with the
  * OAuth response data or rejects with an error.
  *
  * @param id - Unique identifier for the popup window
  * @param url - The URL to open in the popup
  * @param options - Configuration options for the popup window
- * @returns A thenable object that can be used as a Promise
+ * @returns A Promise that resolves with OAuth response or rejects with an error
  *
  * @example
  * ```ts
@@ -82,13 +66,10 @@ export function openPopupWindow(
   id: string,
   url: string,
   options: PopupWindowOptions = {},
-): PopupWindowThenable {
+): PopupWindowPromise {
   // Closure state for managing the popup window
   let popupWindow: Window | null = null;
   let pollingIntervalId: number | null = null;
-  let oauthPromise: Promise<OAuthResponse> = Promise.reject(
-    new Error('Popup not initialized'),
-  );
 
   // Normalize options with defaults
   const normalizedOptions: Required<PopupWindowOptions> = {
@@ -121,32 +102,17 @@ export function openPopupWindow(
   }
 
   /**
-   * Extracts OAuth response from query parameters or hash fragment
+   * Extracts OAuth response from query parameters
    */
   function extractOAuthResponse(popup: Window): OAuthResponse | null {
-    // Try query parameters first
-    const queryParams = parseQueryString(
-      popup.location.search.replace(QUERY_PREFIX_REGEX, ''),
-    );
+    const queryParams = new URLSearchParams(popup.location.search);
+    const code = queryParams.get('code');
 
-    if (queryParams.code) {
+    if (code) {
       return {
-        code: queryParams.code,
-        state: queryParams.state,
+        code,
+        state: queryParams.get('state') || undefined,
       };
-    }
-
-    // Try hash fragment
-    if (popup.location.hash) {
-      const hashParams = parseQueryString(
-        popup.location.hash.replace(HASH_PREFIX_REGEX, ''),
-      );
-      if (hashParams.code) {
-        return {
-          code: hashParams.code,
-          state: hashParams.state,
-        };
-      }
     }
 
     return null;
@@ -156,14 +122,13 @@ export function openPopupWindow(
    * Checks for OAuth errors in the URL parameters
    */
   function extractOAuthError(popup: Window): Error | null {
-    const params = parseQueryString(
-      popup.location.search.replace(QUERY_PREFIX_REGEX, ''),
-    );
+    const params = new URLSearchParams(popup.location.search);
+    const error = params.get('error');
 
-    if (params.error) {
+    if (error) {
       return new Error(
-        params.error_description ||
-          params.error ||
+        params.get('error_description') ||
+          error ||
           'OAuth authentication failed',
       );
     }
@@ -178,8 +143,8 @@ export function openPopupWindow(
    * when the OAuth flow completes. It resolves when it finds the
    * authorization code or rejects if the popup is closed.
    */
-  function startPolling(): void {
-    oauthPromise = new Promise<OAuthResponse>((resolve, reject) => {
+  function startPolling(): Promise<OAuthResponse> {
+    return new Promise<OAuthResponse>((resolve, reject) => {
       pollingIntervalId = window.setInterval(() => {
         try {
           const popup = popupWindow;
@@ -232,7 +197,7 @@ export function openPopupWindow(
   /**
    * Launches the popup window and begins polling for OAuth response
    */
-  function launchPopup(): void {
+  function launchPopup(): Promise<OAuthResponse> {
     // Format window.open options as comma-separated key=value pairs
     const windowOptions = [
       `height=${normalizedOptions.height}`,
@@ -247,28 +212,10 @@ export function openPopupWindow(
       throw OAuthError.popupBlocked();
     }
 
-    startPolling();
+    return startPolling();
   }
 
-  // Launch the popup immediately
-  launchPopup();
-
-  // Return a thenable object that can be used as a Promise
-  const thenable = {
-    // biome-ignore lint/suspicious/noThenProperty: PopupWindowThenable is intentionally thenable for Promise-like API
-    then<TResult1 = OAuthResponse, TResult2 = never>(
-      onfulfilled?: (value: OAuthResponse) => TResult1 | PromiseLike<TResult1>,
-      onrejected?: (reason: unknown) => TResult2 | PromiseLike<TResult2>,
-    ): Promise<TResult1 | TResult2> {
-      return oauthPromise.then(onfulfilled, onrejected);
-    },
-    catch<TResult = never>(
-      onrejected?: (reason: unknown) => TResult | PromiseLike<TResult>,
-    ): Promise<OAuthResponse | TResult> {
-      return oauthPromise.catch(onrejected);
-    },
-    cleanup,
-  } as PopupWindowThenable;
-
-  return thenable;
+  // Launch the popup immediately and return the promise
+  // Cleanup is handled automatically when the promise resolves or rejects
+  return launchPopup();
 }

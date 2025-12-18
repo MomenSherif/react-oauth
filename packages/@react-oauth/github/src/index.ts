@@ -1,13 +1,11 @@
 /**
  * @react-oauth/github
  *
- * A modern, fully-typed React component for GitHub OAuth authentication.
+ * A modern, fully-typed React hook for GitHub OAuth authentication.
  *
  * @packageDocumentation
  */
 
-export type { GitHubLoginButtonProps } from './GitHubLoginButton';
-export { GitHubLoginButton } from './GitHubLoginButton';
 export { OAuthError, OAuthErrorCode } from './OAuthError';
 export type { OAuthResponse } from './PopupWindow';
 export type {

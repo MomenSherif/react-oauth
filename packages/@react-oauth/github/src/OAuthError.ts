@@ -8,53 +8,69 @@ export const OAuthErrorCode = {
   POPUP_BLOCKED: 'OA002',
   /** OA003: State parameter mismatch - possible CSRF attack */
   STATE_MISMATCH: 'OA003',
+  /** OA004: Authorization code not found in OAuth response */
+  MISSING_CODE: 'OA004',
 } as const;
 
 export type OAuthErrorCode = typeof OAuthErrorCode[keyof typeof OAuthErrorCode];
 
 /**
- * Custom error class for OAuth-related errors with error codes
+ * Error with OAuth error code attached
  */
-export class OAuthError extends Error {
-  /** The error code (e.g., "OA001") */
-  readonly code: OAuthErrorCode;
-  /** The original error message */
-  readonly originalMessage: string;
+export type OAuthError = Error & {
+  code: OAuthErrorCode;
+};
 
-  constructor(code: OAuthErrorCode, message: string) {
-    const errorMessage = `${code} ${message}`;
-    super(errorMessage);
-    this.name = 'OAuthError';
-    this.code = code;
-    this.originalMessage = message;
+/**
+ * Creates an OAuth error with the given code and message
+ */
+function createOAuthError(code: OAuthErrorCode, message: string): OAuthError {
+  const error = new Error(`${code} ${message}`) as OAuthError;
+  error.name = 'OAuthError';
+  error.code = code;
+  return error;
+}
 
-    // Maintains proper stack trace for where our error was thrown (only available on V8)
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, OAuthError);
-    }
-  }
-
+/**
+ * OAuth error factory functions
+ */
+export const OAuthError = {
   /**
    * Creates an OAuthError for when the popup is closed
    */
-  static popupClosed(): OAuthError {
-    return new OAuthError(OAuthErrorCode.POPUP_CLOSED, 'The Popup Closed');
-  }
+  popupClosed: (): OAuthError =>
+    createOAuthError(OAuthErrorCode.POPUP_CLOSED, 'The Popup Closed'),
 
   /**
    * Creates an OAuthError for when the popup is blocked
    */
-  static popupBlocked(): OAuthError {
-    return new OAuthError(
-      OAuthErrorCode.POPUP_BLOCKED,
-      'Popup Blocked By Browser',
-    );
-  }
+  popupBlocked: (): OAuthError =>
+    createOAuthError(OAuthErrorCode.POPUP_BLOCKED, 'Popup Blocked By Browser'),
 
   /**
    * Creates an OAuthError for state mismatch
    */
-  static stateMismatch(): OAuthError {
-    return new OAuthError(OAuthErrorCode.STATE_MISMATCH, 'State Mismatch');
-  }
-}
+  stateMismatch: (): OAuthError =>
+    createOAuthError(OAuthErrorCode.STATE_MISMATCH, 'State Mismatch'),
+
+  /**
+   * Creates an OAuthError for missing authorization code
+   */
+  missingCode: (): OAuthError =>
+    createOAuthError(
+      OAuthErrorCode.MISSING_CODE,
+      'Authorization Code Not Found',
+    ),
+
+  /**
+   * Type guard to check if an error is an OAuthError
+   */
+  isOAuthError: (error: unknown): error is OAuthError => {
+    return (
+      error instanceof Error &&
+      'code' in error &&
+      typeof (error as OAuthError).code === 'string' &&
+      Object.values(OAuthErrorCode).includes((error as OAuthError).code)
+    );
+  },
+};

@@ -1,10 +1,10 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { OAuthError } from './OAuthError';
 import {
-  type OAuthResponse,
   openPopupWindow,
+  type OAuthResponse,
   type PopupWindowOptions,
-  type PopupWindowThenable,
+  type PopupWindowPromise,
 } from './PopupWindow';
 
 /**
@@ -45,7 +45,7 @@ export type UseGitHubLoginReturn = {
  * Generates a random state string for CSRF protection
  * @returns A random state string
  */
-function generateState() {
+function generateState(): string {
   return (
     Math.random().toString(36).substring(2, 15) +
     Math.random().toString(36).substring(2, 15)
@@ -90,7 +90,7 @@ function generateState() {
 export function useGitHubLogin(
   options: UseGitHubLoginOptions,
 ): UseGitHubLoginReturn {
-  const popupRef = useRef<PopupWindowThenable | null>(null);
+  const popupRef = useRef<PopupWindowPromise | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   // Generate state if not provided (for CSRF protection)
@@ -104,7 +104,7 @@ export function useGitHubLogin(
       clientId,
       redirectUri = '',
       scope = 'user:email',
-      popupOptions,
+      popupOptions = {},
       allowSignup = true,
       onSuccess,
       onError,
@@ -126,37 +126,26 @@ export function useGitHubLogin(
     setIsLoading(true);
 
     // Build the OAuth authorization URL
-    const params: Record<string, string> = {
-      client_id: clientId,
-      scope,
-      redirect_uri: redirectUri,
-      state, // Always include state for CSRF protection
-    };
-
-    if (!allowSignup) {
-      params.allow_signup = 'false';
-    }
-
-    const search = Object.entries(params)
-      .filter(([_, value]) => value !== undefined && value !== '')
-      .map(
-        ([key, value]) =>
-          `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
-      )
-      .join('&');
-
-    const url = `https://github.com/login/oauth/authorize?${search}`;
+    const url = `https://github.com/login/oauth/authorize?${new URLSearchParams(
+      {
+        client_id: clientId,
+        scope,
+        redirect_uri: redirectUri,
+        state,
+        ...(allowSignup ? {} : { allow_signup: 'false' }),
+      },
+    )}`;
 
     try {
       // Call onRequest callback if provided
       onRequest?.();
 
       // Open popup window
-      const popup = openPopupWindow('github-oauth-authorize', url, {
-        height: 1000,
-        width: 600,
-        ...popupOptions,
-      });
+      const popup = openPopupWindow(
+        'github-oauth-authorize',
+        url,
+        popupOptions,
+      );
 
       popupRef.current = popup;
 
@@ -172,7 +161,8 @@ export function useGitHubLogin(
           }
 
           if (!data.code) {
-            throw new Error("'code' not found in OAuth response");
+            onError(OAuthError.missingCode());
+            return;
           }
           onSuccess(data);
         })
