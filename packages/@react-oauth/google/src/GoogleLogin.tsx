@@ -35,6 +35,7 @@ export default function GoogleLogin({
   width,
   locale,
   click_listener,
+  state,
   containerProps,
   ...props
 }: GoogleLoginProps) {
@@ -80,6 +81,7 @@ export default function GoogleLogin({
       width,
       locale,
       click_listener,
+      state,
     });
 
     if (useOneTap)
