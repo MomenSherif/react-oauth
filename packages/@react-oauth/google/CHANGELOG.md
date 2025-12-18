@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.13.0
+
+### Minor Changes
+
+- [#398](https://github.com/MomenSherif/react-oauth/pull/398) [`2a05d80`](https://github.com/MomenSherif/react-oauth/commit/2a05d80a5e68300f1ed76cb02891791f0cb7ddad) Thanks [@tadcom0](https://github.com/tadcom0)! - Added natively supported state property to GoogleLogin component
+
 ## 0.12.2
 
 ### Patch Changes
