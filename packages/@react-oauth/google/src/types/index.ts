@@ -100,6 +100,8 @@ export interface GsiButtonConfiguration {
   locale?: string;
   /** If set, this [function](https://developers.google.com/identity/gsi/web/reference/js-reference#click_listener) will be called when the Sign in with Google button is clicked. */
   click_listener?: () => void;
+  /** If set, this [string](https://developers.google.com/identity/gsi/web/reference/js-reference#state) returns with the ID token. */
+  state?: string;
 }
 
 export interface PromptMomentNotification {
