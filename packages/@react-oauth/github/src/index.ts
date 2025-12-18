@@ -7,7 +7,7 @@
  */
 
 export { OAuthError, OAuthErrorCode } from './OAuthError';
-export type { OAuthResponse } from './PopupWindow';
+export type { OAuthResponse, PopupWindowOptions } from './PopupWindow';
 export type {
   UseGitHubLoginOptions,
   UseGitHubLoginReturn,

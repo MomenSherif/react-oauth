@@ -1,7 +1,7 @@
 {
   "name": "@react-oauth/github",
   "version": "0.0.1",
-  "description": "A modern, fully-typed React component for GitHub OAuth login 🚀",
+  "description": "A modern, fully-typed React hook for GitHub OAuth authentication 🚀",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -45,15 +45,17 @@
   "keywords": [
     "react",
     "reactjs",
-    "react-component",
-    "react-oauth-google",
-    "react-google-login",
+    "react-hook",
+    "react-hooks",
     "react-social-login",
     "react-oauth",
     "react-login",
     "github-login",
-    "github-oAuth2",
-    "github-oAuth"
+    "github-oauth",
+    "github-oauth2",
+    "oauth2",
+    "authentication",
+    "authorization"
   ],
   "devDependencies": {
     "@types/react": "^18.0.8",
