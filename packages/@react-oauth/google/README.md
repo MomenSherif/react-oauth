@@ -73,6 +73,8 @@ import { GoogleLogin } from '@react-oauth/google';
 />;
 ```
 
+> If you are using popup mode (default), set the proper [Cross Origin Opener Policy](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid#cross_origin_opener_policy) to avoid the [blank window issue](https://github.com/google/google-api-javascript-client/issues/796): `cross-origin-opener-policy: same-origin-allow-popups`.
+
 ### One-tap
 
 ```jsx
@@ -219,6 +221,7 @@ const hasAccess = hasGrantedAnyScopeGoogle(
 |          | native_callback                    | `(response: { id: string; password: string }) => void`        | The JavaScript password credential handler function name                                                                                                                                                                                                                          |
 |          | prompt_parent_id                   | `string`                                                      | The DOM ID of the One Tap prompt container element                                                                                                                                                                                                                                |
 |          | nonce                              | `string`                                                      | A random string for ID tokens                                                                                                                                                                                                                                                     |
+|          | state                              | `string`                                                      | This string returns with the ID token                                                                                                                                                                                                                                             |
 |          | context                            | `signin` \| `signup` \| `use`                                 | The title and words in the One Tap prompt                                                                                                                                                                                                                                         |
 |          | state_cookie_domain                | `string`                                                      | If you need to call One Tap in the parent domain and its subdomains, pass the parent domain to this attribute so that a single shared cookie is used                                                                                                                              |
 |          | allowed_parent_origin              | `string` \| `string[]`                                        | The origins that are allowed to embed the intermediate iframe. One Tap will run in the intermediate iframe mode if this attribute presents                                                                                                                                        |
