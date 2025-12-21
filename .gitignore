@@ -22,3 +22,8 @@ yarn-debug.log*
 yarn-error.log*
 
 .turbo
+
+.yarn/install-state.gz
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/cache/
