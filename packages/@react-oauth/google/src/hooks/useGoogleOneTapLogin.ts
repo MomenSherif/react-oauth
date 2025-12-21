@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
 
 import { useGoogleOAuth } from '../GoogleOAuthProvider';
-import { extractClientId } from '../utils';
 import type {
   CredentialResponse,
   GoogleCredentialResponse,
   IdConfiguration,
   MomentListener,
 } from '../types';
+import { extractClientId } from '../utils';
 
 interface UseGoogleOneTapLoginOptions {
   onSuccess: (credentialResponse: CredentialResponse) => void;
@@ -19,6 +19,7 @@ interface UseGoogleOneTapLoginOptions {
   hosted_domain?: string;
   disabled?: boolean;
   use_fedcm_for_prompt?: IdConfiguration['use_fedcm_for_prompt'];
+  use_fedcm_for_button?: IdConfiguration['use_fedcm_for_button'];
   auto_select?: boolean;
 }
 
@@ -31,6 +32,7 @@ export default function useGoogleOneTapLogin({
   state_cookie_domain,
   hosted_domain,
   use_fedcm_for_prompt = false,
+  use_fedcm_for_button = false,
   disabled,
   auto_select,
 }: UseGoogleOneTapLoginOptions): void {
@@ -72,6 +74,7 @@ export default function useGoogleOneTapLogin({
       prompt_parent_id,
       state_cookie_domain,
       use_fedcm_for_prompt,
+      use_fedcm_for_button,
       auto_select,
     });
 
@@ -88,6 +91,7 @@ export default function useGoogleOneTapLogin({
     state_cookie_domain,
     hosted_domain,
     use_fedcm_for_prompt,
+    use_fedcm_for_button,
     disabled,
     auto_select,
   ]);
