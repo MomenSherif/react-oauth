@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.13.1
+
+### Patch Changes
+
+- [#370](https://github.com/MomenSherif/react-oauth/pull/370) [`38722bb`](https://github.com/MomenSherif/react-oauth/commit/38722bbd271966ecd9a8c06fcfb01dc8e6f6533c) Thanks [@andriiwp3](https://github.com/andriiwp3)! - fix locale parameter to gsi script
+
 ## 0.13.0
 
 ### Minor Changes
