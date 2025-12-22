@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.13.4
+
+### Patch Changes
+
+- [`a30dbbd`](https://github.com/MomenSherif/react-oauth/commit/a30dbbd556aa3e3f21d7442f9a59772d727dea29) Thanks [@MomenSherif](https://github.com/MomenSherif)! - test build
+
 ## 0.13.3
 
 ### Patch Changes
