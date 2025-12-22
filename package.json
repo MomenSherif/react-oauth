@@ -11,11 +11,11 @@
     "dev": "cross-env NODE_ENV=development turbo run dev",
     "dev:google": "npm run dev -- --filter=...@react-oauth/google",
     "build": "cross-env NODE_ENV=production turbo run build",
+    "build:packages": "npm run build -- --filter='@react-oauth/*'",
     "prettier:check": "prettier . --check --ignore-unknown --ignore-path .gitignore",
     "prettier:fix": "prettier . --write --ignore-unknown --ignore-path .gitignore",
-    "prerelease": "npm run build -- --filter='@react-oauth/*'",
     "changeset": "changeset",
-    "release": "changeset publish",
+    "release": "yarn build:packages && changeset publish",
     "commit": "cz",
     "prepare": "is-ci || husky install"
   },
@@ -37,5 +37,6 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  }
+  },
+  "packageManager": "yarn@4.6.0+sha512.5383cc12567a95f1d668fbe762dfe0075c595b4bfff433be478dbbe24e05251a8e8c3eb992a986667c1d53b6c3a9c85b8398c35a960587fbd9fa3a0915406728"
 }

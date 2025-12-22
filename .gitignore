@@ -3,6 +3,19 @@ node_modules
 .pnp
 .pnp.js
 
+# Yarn 4 files
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# Yarn state (local only)
+.yarn/install-state.gz
+
+
 # testing
 coverage
 
