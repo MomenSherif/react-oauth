@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.13.2
+
+### Patch Changes
+
+- [`8756cc7`](https://github.com/MomenSherif/react-oauth/commit/8756cc734a2f7b354da1b6d333b211cb80fae15d) Thanks [@MomenSherif](https://github.com/MomenSherif)! - fix build output
+
 ## 0.13.1
 
 ### Patch Changes
