@@ -71,12 +71,12 @@ export function openPopupWindow(
   let popupWindow: Window | null = null;
   let pollingIntervalId: number | null = null;
 
-  // Normalize options with defaults
+  // Normalize options with defaults and center the popup
   const normalizedOptions: Required<PopupWindowOptions> = {
-    height: 1000,
-    width: 600,
-    left: window.screen.width / 2 - 300,
-    top: window.screen.height / 2 - 500,
+    height: 700,
+    width: 500,
+    left: window.screen.width / 2 - 250,
+    top: window.screen.height / 2 - 350,
     ...options,
   };
 

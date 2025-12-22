@@ -93,6 +93,28 @@ export function useGitHubLogin(
   const popupRef = useRef<PopupWindowPromise | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Extract individual options to avoid dependency on the whole options object
+  const {
+    clientId,
+    redirectUri = '',
+    scope = 'user:email',
+    popupOptions = {},
+    allowSignup = true,
+    onSuccess,
+    onError,
+    onRequest,
+  } = options;
+
+  // Use refs for callbacks to avoid requiring users to memoize them
+  const onSuccessRef = useRef(onSuccess);
+  onSuccessRef.current = onSuccess;
+
+  const onErrorRef = useRef(onError);
+  onErrorRef.current = onError;
+
+  const onRequestRef = useRef(onRequest);
+  onRequestRef.current = onRequest;
+
   // Generate state if not provided (for CSRF protection)
   const state = useMemo(
     () => options.state || generateState(),
@@ -100,21 +122,10 @@ export function useGitHubLogin(
   );
 
   const initiateGitHubLogin = useCallback(() => {
-    const {
-      clientId,
-      redirectUri = '',
-      scope = 'user:email',
-      popupOptions = {},
-      allowSignup = true,
-      onSuccess,
-      onError,
-      onRequest,
-    } = options;
-
     // Validate required props
     if (!clientId) {
       const error = new Error('clientId is required');
-      onError(error);
+      onErrorRef.current(error);
       return;
     }
 
@@ -138,7 +149,7 @@ export function useGitHubLogin(
 
     try {
       // Call onRequest callback if provided
-      onRequest?.();
+      onRequestRef.current?.();
 
       // Open popup window
       const popup = openPopupWindow(
@@ -156,25 +167,37 @@ export function useGitHubLogin(
 
           // Verify state matches (CSRF protection)
           if (data.state && data.state !== state) {
-            onError(OAuthError.stateMismatch());
+            onErrorRef.current(OAuthError.stateMismatch());
             return;
           }
 
           if (!data.code) {
-            onError(OAuthError.missingCode());
+            onErrorRef.current(OAuthError.missingCode());
             return;
           }
-          onSuccess(data);
+          onSuccessRef.current(data);
         })
         .catch((error: Error) => {
           setIsLoading(false);
-          onError(error instanceof Error ? error : new Error(String(error)));
+          onErrorRef.current(
+            error instanceof Error ? error : new Error(String(error)),
+          );
         });
     } catch (error) {
       setIsLoading(false);
-      onError(error instanceof Error ? error : new Error(String(error)));
+      onErrorRef.current(
+        error instanceof Error ? error : new Error(String(error)),
+      );
     }
-  }, [options, state, isLoading]);
+  }, [
+    clientId,
+    redirectUri,
+    scope,
+    popupOptions,
+    allowSignup,
+    state,
+    isLoading,
+  ]);
 
   return {
     initiateGitHubLogin,
