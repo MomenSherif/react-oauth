@@ -1,0 +1,75 @@
+{
+  "name": "@react-oauth/github",
+  "version": "0.0.1",
+  "description": "A modern, fully-typed React hook for GitHub OAuth authentication 🚀",
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.esm.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "rollup -c",
+    "prerelease": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "author": {
+    "name": "Maged Mohamed",
+    "email": "MagedMohammed16@GMail.Com",
+    "url": "https://github.com/Migggz"
+  },
+  "homepage": "https://github.com/MomenSherif/react-oauth",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MomenSherif/react-oauth"
+  },
+  "bugs": {
+    "url": "https://github.com/MomenSherif/react-oauth/issues",
+    "email": "momensherif.2019@gmail.com"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "react-hook",
+    "react-hooks",
+    "react-social-login",
+    "react-oauth",
+    "react-login",
+    "github-login",
+    "github-oauth",
+    "github-oauth2",
+    "oauth2",
+    "authentication",
+    "authorization"
+  ],
+  "devDependencies": {
+    "@types/react": "^18.0.8",
+    "cross-env": "^7.0.3",
+    "rollup": "^2.71.1",
+    "typescript": "^4.6.4"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
