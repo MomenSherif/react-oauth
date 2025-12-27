@@ -3645,6 +3645,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-oauth/github@workspace:packages/@react-oauth/github":
+  version: 0.0.0-use.local
+  resolution: "@react-oauth/github@workspace:packages/@react-oauth/github"
+  dependencies:
+    "@types/react": "npm:^18.0.8"
+    cross-env: "npm:^7.0.3"
+    rollup: "npm:^2.71.1"
+    typescript: "npm:^4.6.4"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  languageName: unknown
+  linkType: soft
+
 "@react-oauth/google@npm:*, @react-oauth/google@workspace:packages/@react-oauth/google":
   version: 0.0.0-use.local
   resolution: "@react-oauth/google@workspace:packages/@react-oauth/google"
