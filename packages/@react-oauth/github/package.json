@@ -1,6 +1,6 @@
 {
   "name": "@react-oauth/github",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A modern, fully-typed React hook for GitHub OAuth authentication 🚀",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
