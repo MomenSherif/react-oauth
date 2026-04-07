@@ -59,6 +59,13 @@ export interface IdConfiguration {
    * @default false
    */
   use_fedcm_for_button?: boolean;
+  /**
+   * Optional. If your application knows which user should authorize the request,
+   * it can use this property to provide a hint to Google.
+   * The email address for the target user. For more information,
+   * see the [login_hint](https://developers.google.com/identity/protocols/oauth2/openid-connect#authenticationuriparameters) field in the OpenID Connect docs.
+   */
+  login_hint?: string;
 }
 
 export interface CredentialResponse {
