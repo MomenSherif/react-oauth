@@ -36,6 +36,7 @@ export default function GoogleLogin({
   click_listener,
   state,
   containerProps,
+  login_hint,
   ...props
 }: GoogleLoginProps) {
   const btnContainerRef = useRef<HTMLDivElement>(null);
@@ -67,6 +68,7 @@ export default function GoogleLogin({
           select_by,
         });
       },
+      login_hint,
       ...props,
     });
 
@@ -102,6 +104,7 @@ export default function GoogleLogin({
     logo_alignment,
     width,
     locale,
+    login_hint,
   ]);
 
   return (
