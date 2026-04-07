@@ -1,5 +1,11 @@
 # @react-oauth/google
 
+## 0.13.5
+
+### Patch Changes
+
+- [#408](https://github.com/MomenSherif/react-oauth/pull/408) [`05be9c4`](https://github.com/MomenSherif/react-oauth/commit/05be9c44568af41b9208ab01dd4ee20bd9d3dd9a) Thanks [@anandhansreekumar](https://github.com/anandhansreekumar)! - add login_hint support to GoogleLogin, including types and docs
+
 ## 0.13.4
 
 ### Patch Changes

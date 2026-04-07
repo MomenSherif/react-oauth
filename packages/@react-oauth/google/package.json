@@ -1,6 +1,6 @@
 {
   "name": "@react-oauth/google",
-  "version": "0.13.4",
+  "version": "0.13.5",
   "description": "Google OAuth2 using Google Identity Services for React 🚀",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
