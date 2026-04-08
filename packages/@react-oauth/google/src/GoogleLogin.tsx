@@ -12,8 +12,12 @@ import {
 
 const containerHeightMap = { large: 40, medium: 32, small: 20 };
 
+type SuccessfulCredentialResponse = Omit<CredentialResponse, 'credential'> & {
+  credential: string;
+};
+
 export type GoogleLoginProps = {
-  onSuccess: (credentialResponse: CredentialResponse) => void;
+  onSuccess: (credentialResponse: SuccessfulCredentialResponse) => void;
   onError?: () => void;
   promptMomentNotification?: MomentListener;
   useOneTap?: boolean;
