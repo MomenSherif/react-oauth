@@ -35,4 +35,4 @@ yarn-debug.log*
 yarn-error.log*
 
 .turbo
-
+.npmrc
