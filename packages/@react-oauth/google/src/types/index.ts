@@ -92,7 +92,7 @@ export interface GsiButtonConfiguration {
   /** The button [type](https://developers.google.com/identity/gsi/web/reference/js-reference#type): icon, or standard button */
   type?: 'standard' | 'icon';
   /** The button [theme](https://developers.google.com/identity/gsi/web/reference/js-reference#theme). For example, filled_blue or filled_black */
-  theme?: 'outline' | 'filled_blue' | 'filled_black';
+  theme?: 'outline' | 'filled_blue' | 'filled_black' | 'outline_dark';
   /** The button [size](https://developers.google.com/identity/gsi/web/reference/js-reference#size). For example, small or large */
   size?: 'large' | 'medium' | 'small';
   /** The button [text](https://developers.google.com/identity/gsi/web/reference/js-reference#text). For example, "Sign in with Google" or "Sign up with Google" */
