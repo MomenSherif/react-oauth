@@ -34,6 +34,9 @@ export default function useLoadGsiScript(
   onScriptLoadErrorRef.current = onScriptLoadError;
 
   useEffect(() => {
+    // Reset so consumers wait for the new script (e.g. after a locale change)
+    // before rendering, instead of using the previous `window.google` instance.
+    setScriptLoadedSuccessfully(false);
     const scriptTag = document.createElement('script');
     scriptTag.src = 'https://accounts.google.com/gsi/client';
     if (locale) scriptTag.src += `?hl=${locale}`;
@@ -54,7 +57,7 @@ export default function useLoadGsiScript(
     return () => {
       document.body.removeChild(scriptTag);
     };
-  }, [nonce]);
+  }, [nonce, locale]);
 
   return scriptLoadedSuccessfully;
 }
