@@ -38,7 +38,7 @@ export default function GoogleOAuthProvider({
       clientId,
       scriptLoadedSuccessfully,
     }),
-    [clientId, scriptLoadedSuccessfully],
+    [clientId, locale, scriptLoadedSuccessfully],
   );
 
   return (
