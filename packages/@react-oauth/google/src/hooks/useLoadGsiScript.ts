@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 
 export interface UseLoadGsiScriptOptions {
   /**
@@ -23,9 +23,10 @@ export default function useLoadGsiScript(
   options: UseLoadGsiScriptOptions = {},
 ): boolean {
   const { nonce, locale, onScriptLoadSuccess, onScriptLoadError } = options;
-
-  const [scriptLoadedSuccessfully, setScriptLoadedSuccessfully] =
-    useState(false);
+  const request = useMemo(() => ({ nonce, locale }), [nonce, locale]);
+  const [loadedRequest, setLoadedRequest] = useState<typeof request | null>(
+    null,
+  );
 
   const onScriptLoadSuccessRef = useRef(onScriptLoadSuccess);
   onScriptLoadSuccessRef.current = onScriptLoadSuccess;
@@ -34,30 +35,33 @@ export default function useLoadGsiScript(
   onScriptLoadErrorRef.current = onScriptLoadError;
 
   useEffect(() => {
-    // Reset so consumers wait for the new script (e.g. after a locale change)
-    // before rendering, instead of using the previous `window.google` instance.
-    setScriptLoadedSuccessfully(false);
+    const { nonce, locale } = request;
     const scriptTag = document.createElement('script');
     scriptTag.src = 'https://accounts.google.com/gsi/client';
     if (locale) scriptTag.src += `?hl=${locale}`;
     scriptTag.async = true;
     scriptTag.defer = true;
     scriptTag.nonce = nonce;
+
     scriptTag.onload = () => {
-      setScriptLoadedSuccessfully(true);
+      setLoadedRequest(request);
       onScriptLoadSuccessRef.current?.();
     };
+
     scriptTag.onerror = () => {
-      setScriptLoadedSuccessfully(false);
+      setLoadedRequest(null);
       onScriptLoadErrorRef.current?.();
     };
 
     document.body.appendChild(scriptTag);
 
     return () => {
-      document.body.removeChild(scriptTag);
+      scriptTag.onload = null;
+      scriptTag.onerror = null;
+      scriptTag.remove();
     };
-  }, [nonce, locale]);
+  }, [request]);
 
-  return scriptLoadedSuccessfully;
+  // A locale or nonce change makes the new request pending during render.
+  return loadedRequest === request;
 }
